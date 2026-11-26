@@ -1,0 +1,49 @@
+{
+  "name": "agent-spend-guard",
+  "version": "0.1.0",
+  "description": "A BNB Chain vault that lets an AI agent spend only what a person approved, for the exact payment request.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "hardhat build",
+    "test": "hardhat test",
+    "test:sol": "hardhat test solidity",
+    "test:ts": "hardhat test nodejs",
+    "demo": "hardhat run scripts/agent-demo.ts",
+    "new-deployer": "tsx scripts/new-deployer.ts",
+    "deploy:bsc-testnet": "hardhat run scripts/deploy.ts --network bscTestnet",
+    "guard": "tsx cli/guard.ts",
+    "typecheck": "tsc --noEmit",
+    "sim": "tsx sim/swarm.ts",
+    "sim:bundle": "esbuild sim/swarm.ts sim/model-tasks.ts --bundle --platform=node --format=esm --outdir=dist --out-extension:.js=.mjs",
+    "stage": "tsx demo/stage.ts",
+    "demo:server": "tsx demo/server.ts",
+    "new-roles": "tsx scripts/new-roles.ts",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "proof:testnet": "tsx scripts/testnet-proof.ts",
+    "add-approver": "tsx scripts/add-approver.ts",
+    "add-passkey": "tsx scripts/add-passkey.ts",
+    "proof:market": "tsx scripts/testnet-market-proof.ts",
+    "verify:seal": "node scripts/verify-seal-records.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-node-test-runner": "^3.1.2",
+    "@nomicfoundation/hardhat-viem": "^3.1.0",
+    "@types/node": "^26.6.6",
+    "forge-std": "github:foundry-rs/forge-std#v1.9.7",
+    "hardhat": "^3.22.0",
+    "lucide-static": "^1.80.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.6.1",
+    "@types/qrcode": "^1.5.6",
+    "qrcode": "^1.5.4",
+    "viem": "^2.58.0"
+  }
+}

@@ -1,0 +1,48 @@
+{
+ "what": "Four attacks and the real payment on BSC testnet, 27 Nov 2026. Changed recipient (real local AI model fooled), raised amount, approval forged with a stolen agent key, replay; the approved invoice paid once.",
+ "network": "BSC testnet (chain 97)",
+ "vault": "0x190d9e1a4d9193371aa7b884db61bd93e71ae146",
+ "transactions": [
+  {
+   "attack": "changed wallet",
+   "outcome": "Refused",
+   "reason": "RecipientMismatch",
+   "tx": "0x12fe98c57fec81b356f3eabcbae99c3307935c3e77dbf93bde084765f19e41a2",
+   "block": 145049869,
+   "rpc_status": "0x1"
+  },
+  {
+   "attack": "raised amount",
+   "outcome": "Refused",
+   "reason": "AmountAboveApproval",
+   "tx": "0x80e8d7613e0d37d3e62ed24f6e3a7ec7f39ce5c5b30f274210e9a0c072eed9d3",
+   "block": 145049883,
+   "rpc_status": "0x1"
+  },
+  {
+   "attack": "stolen agent key, forged approval",
+   "outcome": "Refused",
+   "reason": "BadSignature",
+   "tx": "0xf4388989cb388e9f3e5d1ff7dc71cfd7fd76d23a1b59a2c786e101d30692260f",
+   "block": 145049886,
+   "rpc_status": "0x1"
+  },
+  {
+   "attack": "real invoice",
+   "outcome": "Executed",
+   "reason": "",
+   "tx": "0xa24e2be0859a465e1b943af9527ce166c1296a67ba2d48a9c2f685a4d6d42794",
+   "block": 145049900,
+   "rpc_status": "0x1"
+  },
+  {
+   "attack": "replay",
+   "outcome": "Refused",
+   "reason": "UsesExhausted",
+   "tx": "0xf0d8426719cabe99e0d19cdaaa196355f9d3873a226fb528012c187bec5ba584",
+   "block": 145049915,
+   "rpc_status": "0x1"
+  }
+ ],
+ "verified_by": "eth_getTransactionReceipt on https://bsc-testnet-rpc.publicnode.com"
+}

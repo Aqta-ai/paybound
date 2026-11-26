@@ -1,0 +1,26 @@
+{
+ "what": "Paybound demo film run: real local AI model fooled by a wallet-change message; vault on BSC testnet refused it, paid the real invoice once, refused the replay.",
+ "network": "BSC testnet (chain 97)",
+ "vault": "0x190d9e1a4d9193371aa7b884db61bd93e71ae146",
+ "date": "2026-11-27",
+ "transactions": [
+  {
+   "outcome": "Refused",
+   "reason": "RecipientMismatch",
+   "tx": "0x04441f4f3e28cfd568f0e37c61c183b5697588e3e54d4b927554ec44bc859c97",
+   "block": 145047165
+  },
+  {
+   "outcome": "Executed",
+   "reason": "",
+   "tx": "0x2ef71df9da3da7657497ed256a9a6e302ec853041bfed50dcee35fd80c815315",
+   "block": 145047202
+  },
+  {
+   "outcome": "Refused",
+   "reason": "UsesExhausted",
+   "tx": "0x2ffbc4b5b165f50708388c5456af736b54d3c1bb9b0b27e5188e44b8a96f5d94",
+   "block": 145047231
+  }
+ ]
+}

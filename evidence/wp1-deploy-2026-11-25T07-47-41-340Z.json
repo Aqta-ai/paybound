@@ -1,0 +1,39 @@
+{
+  "steps": [
+    "token",
+    "vault",
+    "mint",
+    "policy",
+    "agent",
+    "allowlist",
+    "gas"
+  ],
+  "chainId": 97,
+  "owner": "0xbc6475568303d2293258e0061726906efc77838e",
+  "guardian": "0x35f8D34aadbc7d09233634D11B03bdcE840467D5",
+  "approvers": [
+    "0x46f36b41B94c1a4dfF33606C7Fdf11B193CaeD25"
+  ],
+  "agent": "0xd7eD8d1Aeb93235226934A48cF5FB523F602bb35",
+  "supplier": "0xc2177666CF501222986A3c447f03327F9D366cc6",
+  "required": "1",
+  "delay": "3600",
+  "startBlock": "144750619",
+  "token": "0x3b6875dac9c9a42958f63cd541f8f410fb777595",
+  "vault": "0x190d9e1a4d9193371aa7b884db61bd93e71ae146",
+  "readback": {
+    "isAgent": true,
+    "guardian": "0x35f8D34aadbc7d09233634D11B03bdcE840467D5",
+    "requiredApprovals": "1",
+    "allowlistEnabled": true,
+    "supplierAllowed": true,
+    "policy": [
+      "200000000000000000000000",
+      "10000000000000000000000",
+      "10000000000000000000000"
+    ],
+    "vaultBalance": "1000000000000000000000000",
+    "digestParity": true
+  },
+  "explorer": "https://testnet.bscscan.com/address/0x190d9e1a4d9193371aa7b884db61bd93e71ae146"
+}

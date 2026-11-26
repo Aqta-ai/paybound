@@ -1,0 +1,133 @@
+{
+  "what": "Per-attempt market evidence on BSC testnet: the quotes the agent read, its decision, and the vault transaction or the absence of one. Test token only. Approver: the scripted testnet approver key.",
+  "chainId": 97,
+  "vault": "0x190d9E1a4D9193371Aa7b884Db61Bd93E71aE146",
+  "token": "0x3B6875DaC9C9a42958f63cd541F8f410fB777595",
+  "supplier": "0xc2177666CF501222986A3c447f03327F9D366cc6",
+  "approval": {
+    "digest": "0x653ac3c108634e76d6ca910f2cfc30b7224ef7d7b3ea9ecbb4605ca323f03f9e",
+    "meaning": "up to 3,400 test dollars to the supplier, once, valid 24 hours",
+    "approver": "0x46f36b41B94c1a4dfF33606C7Fdf11B193CaeD25"
+  },
+  "peg": {
+    "symbol": "USDT",
+    "tolerance": 0.01,
+    "atlas": true
+  },
+  "note": "The vault never reads prices; the market check is the agent's own decision before it asks the vault.",
+  "attempts": [
+    {
+      "step": "live quotes",
+      "simulated": false,
+      "market": {
+        "symbol": "USDT",
+        "mode": "CoinMarketCap + Atlas",
+        "checkedAt": "2026-11-25T10:47:28.289Z",
+        "tolerance": 0.01,
+        "quotes": [
+          {
+            "symbol": "USDT",
+            "price": 0.9985881370723176,
+            "lastUpdated": "2026-11-25T10:46:02.000Z",
+            "source": "CoinMarketCap"
+          },
+          {
+            "source": "Atlas",
+            "symbol": "USDT",
+            "chainId": 56,
+            "feed": "0x9fc000fc9c17578b49853278a517e357201d01e4",
+            "block": "135641387",
+            "blockHash": "0xb669b5dabae47b566dc633e999a16264f6a4be701d072ad4427f422868ed1362",
+            "round": "1",
+            "answer": "998679004338642663",
+            "decimals": 18,
+            "price": 0.9986790043386427,
+            "lastUpdated": "2026-11-25T08:36:00.000Z"
+          }
+        ],
+        "reasons": []
+      },
+      "agentDecision": "submitted",
+      "transactionSent": true,
+      "tx": {
+        "hash": "0xc7a1d88418b12bf2d2073c38972a1bc9690edc0ed3280ce5fe92806f0e704485",
+        "explorer": "https://testnet.bscscan.com/tx/0xc7a1d88418b12bf2d2073c38972a1bc9690edc0ed3280ce5fe92806f0e704485",
+        "vaultOutcome": "Executed",
+        "vaultReason": "Ok"
+      }
+    },
+    {
+      "step": "stage-simulated depeg at $0.97",
+      "simulated": true,
+      "market": {
+        "symbol": "USDT",
+        "mode": "CoinMarketCap + Atlas",
+        "checkedAt": "2026-11-25T10:47:29.881Z",
+        "tolerance": 0.01,
+        "quotes": [
+          {
+            "symbol": "USDT",
+            "price": 0.97,
+            "lastUpdated": "2026-11-25T10:47:29.881Z",
+            "source": "Stage simulation",
+            "simulated": true
+          }
+        ],
+        "reasons": [
+          "Stage simulation: the price is outside the band",
+          "Clear the simulation to run both live sources",
+          "Stage simulation price is outside the 1% peg tolerance"
+        ]
+      },
+      "agentDecision": "held",
+      "transactionSent": false,
+      "holdReason": "Stage simulation: the price is outside the band. Clear the simulation to run both live sources. Stage simulation price is outside the 1% peg tolerance"
+    },
+    {
+      "step": "live quotes, same request again",
+      "simulated": false,
+      "market": {
+        "symbol": "USDT",
+        "mode": "CoinMarketCap + Atlas",
+        "checkedAt": "2026-11-25T10:47:31.604Z",
+        "tolerance": 0.01,
+        "quotes": [
+          {
+            "symbol": "USDT",
+            "price": 0.9985881370723176,
+            "lastUpdated": "2026-11-25T10:46:02.000Z",
+            "source": "CoinMarketCap"
+          },
+          {
+            "source": "Atlas",
+            "symbol": "USDT",
+            "chainId": 56,
+            "feed": "0x9fc000fc9c17578b49853278a517e357201d01e4",
+            "block": "135641394",
+            "blockHash": "0x0f2dec10816e1246edc2253813da6625933dd1a20e2fef489e3d3586f7bdd7ba",
+            "round": "1",
+            "answer": "998679004338642663",
+            "decimals": 18,
+            "price": 0.9986790043386427,
+            "lastUpdated": "2026-11-25T08:36:00.000Z"
+          }
+        ],
+        "reasons": []
+      },
+      "agentDecision": "submitted",
+      "transactionSent": true,
+      "tx": {
+        "hash": "0x8177ae59a0a9a6146605f03e3d66f1e4e9a27686607170351529047523771fdb",
+        "explorer": "https://testnet.bscscan.com/tx/0x8177ae59a0a9a6146605f03e3d66f1e4e9a27686607170351529047523771fdb",
+        "vaultOutcome": "Refused",
+        "vaultReason": "UsesExhausted"
+      }
+    }
+  ],
+  "checks": {
+    "liveAttemptPaid": true,
+    "depegHeldWithNoTransaction": true,
+    "repeatRefusedByVault": true
+  },
+  "pass": true
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Seal Spend Guard">
+  <title>Seal Spend Guard</title>
+  <path d="M37.39,8.41 Q43.71,7.67 47.09,13.08 Q53.11,15.17 53.80,21.50 Q58.32,25.99 56.20,32.00 Q58.32,38.01 53.80,42.50 Q53.11,48.83 47.09,50.92 Q43.71,56.33 37.39,55.59 Q32.00,59.00 26.61,55.59 Q20.29,56.33 16.91,50.92 Q10.89,48.83 10.20,42.50 Q5.68,38.01 7.80,32.00 Q5.68,25.99 10.20,21.50 Q10.89,15.17 16.91,13.08 Q20.29,7.67 26.61,8.41 Q32.00,5.00 37.39,8.41 Z" fill="#0b7f91"/>
+  <circle cx="32" cy="32" r="19.5" fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="1.6"/>
+  <circle cx="32" cy="32" r="16.5" fill="#00845f"/>
+  <path d="M24.5 32.5 L29.8 37.8 L40 26.6" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

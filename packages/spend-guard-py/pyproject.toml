@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aqta-spend-guard"
+version = "0.1.0"
+description = "Let AI agents pay on BNB Smart Chain without giving them unlimited authority."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"
+dependencies = ["web3>=6.15,<8"]
+keywords = ["bnb", "bsc", "ai-agent", "agent-payments", "web3", "smart-contract", "aqta", "seal"]
+classifiers = ["License :: OSI Approved :: Apache Software License", "Programming Language :: Python :: 3"]
+
+[project.urls]
+Homepage = "https://aqta.ai/seal"
+Source = "https://github.com/Aqta-ai/seal-spend-guard"
+
+[tool.setuptools.package-data]
+aqta_spend_guard = ["contracts.json"]

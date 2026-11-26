@@ -1,0 +1,50 @@
+vault 0xb7f8bc63bbcad18155201308c8f3540b07f84f5e holds 10,000 test USD
+
+A scam email changes the wallet
++--------------------------------------------------------------------------+
+| Spend Guard                                                      Refused |
++--------------------------------------------------------------------------+
+| Decision        Recipient is not the one approved                        |
+| Code            RecipientMismatch                                        |
+| Tried to pay    3,400 to 0x2222…2222                                     |
+| Approved        3,400 to 0x1111…1111, 1 use                              |
+| Money moved     none                                                     |
+| Evidence        0x297e…8c09 on chain                                     |
++--------------------------------------------------------------------------+
+
+The agent asks for more
++--------------------------------------------------------------------------+
+| Spend Guard                                                      Refused |
++--------------------------------------------------------------------------+
+| Decision        Amount is above the approval                             |
+| Code            AmountAboveApproval                                      |
+| Tried to pay    5,000 to 0x1111…1111                                     |
+| Approved        3,400 to 0x1111…1111, 1 use                              |
+| Money moved     none                                                     |
+| Evidence        0x8708…1222 on chain                                     |
++--------------------------------------------------------------------------+
+
+The real invoice
++--------------------------------------------------------------------------+
+| Spend Guard                                                         Paid |
++--------------------------------------------------------------------------+
+| Decision        Matches the approval                                     |
+| Code            Ok                                                       |
+| Paid            3,400 to 0x1111…1111                                     |
+| Approved        3,400 to 0x1111…1111, 1 use                              |
+| Money moved     3,400                                                    |
+| Evidence        0xa085…8598 on chain                                     |
++--------------------------------------------------------------------------+
+
+The same invoice again
++--------------------------------------------------------------------------+
+| Spend Guard                                                      Refused |
++--------------------------------------------------------------------------+
+| Decision        Approval already used                                    |
+| Code            UsesExhausted                                            |
+| Tried to pay    3,400 to 0x1111…1111                                     |
+| Approved        3,400 to 0x1111…1111, 1 use                              |
+| Money moved     none                                                     |
+| Evidence        0xdcd4…03a0 on chain                                     |
++--------------------------------------------------------------------------+
+

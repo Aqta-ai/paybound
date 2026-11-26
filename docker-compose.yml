@@ -1,0 +1,20 @@
+services:
+  demo:
+    build: .
+    init: true
+    environment:
+      DEMO_HOST: 0.0.0.0
+      DEMO_PORT: "8787"
+      RPC_URL: http://127.0.0.1:8545
+    ports:
+      - "127.0.0.1:8787:8787"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:8787/api/info').then(r => r.json()).then(s => process.exit(s.network === 'local' && s.chainId === 31337 ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 30s

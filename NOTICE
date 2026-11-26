@@ -1,0 +1,13 @@
+Seal Spend Guard
+Copyright 2026 Aqta Technologies Limited
+
+This product includes software developed by others:
+- OpenZeppelin Contracts (MIT licence), https://github.com/OpenZeppelin/openzeppelin-contracts
+- forge-std (MIT or Apache-2.0), https://github.com/foundry-rs/forge-std
+- viem (MIT licence), https://github.com/wevm/viem
+- Lucide icons (ISC licence), https://lucide.dev, in demo/web/icons/ (licence text in demo/web/icons/LICENSE-lucide)
+- qrcode (MIT licence), https://github.com/soldair/node-qrcode
+
+The Rón mascot artwork (demo/web/ron.png) and the Aqta and Seal names and marks are not licensed under Apache-2.0. All rights reserved by Aqta Technologies Limited.
+
+This demo bundles three.js r187 (MIT License, Copyright 2010-2026 three.js authors), see demo/web/vendor/THREE-LICENSE.txt.

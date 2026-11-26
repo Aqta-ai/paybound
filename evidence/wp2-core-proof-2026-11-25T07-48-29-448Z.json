@@ -1,0 +1,107 @@
+{
+  "what": "Core proof on BSC testnet (chain 97): changed wallet refused, supplier paid once, repeat refused. Test token only.",
+  "chainId": 97,
+  "vault": "0x190d9E1a4D9193371Aa7b884Db61Bd93E71aE146",
+  "token": "0x3B6875DaC9C9a42958f63cd541F8f410fB777595",
+  "approver": "0x46f36b41B94c1a4dfF33606C7Fdf11B193CaeD25",
+  "agent": "0xd7eD8d1Aeb93235226934A48cF5FB523F602bb35",
+  "supplier": "0xc2177666CF501222986A3c447f03327F9D366cc6",
+  "changedWallet": "0x9d4Bd3399023B6F9c17A48c8fe40694D5982a7c8",
+  "approval": {
+    "agent": "0xd7eD8d1Aeb93235226934A48cF5FB523F602bb35",
+    "token": "0x3B6875DaC9C9a42958f63cd541F8f410fB777595",
+    "recipient": "0xc2177666CF501222986A3c447f03327F9D366cc6",
+    "maxAmount": "3400000000000000000000",
+    "cap": "3400000000000000000000",
+    "maxUses": 1,
+    "expiry": "1795679300",
+    "salt": "0xa0c096a32de7abcc697c297a21dd2bbe4b35f5cb4175466760c13fb24176c556",
+    "digest": "0xf2beed2f095024f36aa3b09776463bde22b319822a3054764fab8597402bca02",
+    "meaning": "up to 3,400 tUSD to the supplier, once, valid 24 hours"
+  },
+  "steps": [
+    {
+      "step": "changed wallet",
+      "request": {
+        "recipient": "0x9d4Bd3399023B6F9c17A48c8fe40694D5982a7c8",
+        "amount": "3400"
+      },
+      "dryRun": "RecipientMismatch",
+      "outcome": "Refused",
+      "reason": "RecipientMismatch",
+      "txHash": "0x3e7699de38daff35083123fb3f16dc46a7661cbd409d9102cc386394d33d1471",
+      "explorer": "https://testnet.bscscan.com/tx/0x3e7699de38daff35083123fb3f16dc46a7661cbd409d9102cc386394d33d1471",
+      "expected": "Refused:RecipientMismatch",
+      "pass": true
+    },
+    {
+      "step": "approved supplier",
+      "request": {
+        "recipient": "0xc2177666CF501222986A3c447f03327F9D366cc6",
+        "amount": "3400"
+      },
+      "dryRun": "Ok",
+      "outcome": "Executed",
+      "reason": "Ok",
+      "txHash": "0x84c36a8852687c390250e03b2fd6862c2e4d6f7ff34b23e6e794c2895bdbd522",
+      "explorer": "https://testnet.bscscan.com/tx/0x84c36a8852687c390250e03b2fd6862c2e4d6f7ff34b23e6e794c2895bdbd522",
+      "expected": "Executed",
+      "pass": true
+    },
+    {
+      "step": "same payment again",
+      "request": {
+        "recipient": "0xc2177666CF501222986A3c447f03327F9D366cc6",
+        "amount": "3400"
+      },
+      "dryRun": "UsesExhausted",
+      "outcome": "Refused",
+      "reason": "UsesExhausted",
+      "txHash": "0xbcaf99ce5cc39fe02c57df5a05af17cb8dfe66105713e8bc0a379b3a7121f18a",
+      "explorer": "https://testnet.bscscan.com/tx/0xbcaf99ce5cc39fe02c57df5a05af17cb8dfe66105713e8bc0a379b3a7121f18a",
+      "expected": "Refused:UsesExhausted",
+      "pass": true
+    }
+  ],
+  "balances": {
+    "before": {
+      "supplier": "0",
+      "attacker": "0",
+      "vault": "1000000000000000000000000"
+    },
+    "after": {
+      "supplier": "3400000000000000000000",
+      "attacker": "0",
+      "vault": "996600000000000000000000"
+    }
+  },
+  "log": [
+    {
+      "event": "SpendRefused",
+      "block": "144750795",
+      "tx": "0x3e7699de38daff35083123fb3f16dc46a7661cbd409d9102cc386394d33d1471",
+      "reason": "RecipientMismatch"
+    },
+    {
+      "event": "SpendExecuted",
+      "block": "144750799",
+      "tx": "0x84c36a8852687c390250e03b2fd6862c2e4d6f7ff34b23e6e794c2895bdbd522",
+      "reason": null
+    },
+    {
+      "event": "SpendRefused",
+      "block": "144750803",
+      "tx": "0xbcaf99ce5cc39fe02c57df5a05af17cb8dfe66105713e8bc0a379b3a7121f18a",
+      "reason": "UsesExhausted"
+    }
+  ],
+  "checks": {
+    "allStepsAsExpected": true,
+    "supplierPaidExactlyOnce": true,
+    "attackerReceivedNothing": true,
+    "vaultDownBy3400": true,
+    "logRecount": true,
+    "usesConsumed": true
+  },
+  "pass": true
+}

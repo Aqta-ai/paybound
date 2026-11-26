@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<title>Approve with a passkey</title>
+<style>
+  :root { --bg: #f7f8f9; --card: #fff; --ink: #111827; --muted: #6b7280; --line: #e5e7eb; --good: #0b7f91; --good-bg: #e6f3f5; --bad: #b91c1c; --accent: #009b72; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", "PingFang SC", sans-serif; -webkit-font-smoothing: antialiased; }
+  main { max-width: 480px; margin: 0 auto; padding: 20px 16px 40px; }
+  .brandrow { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
+  h1 { font-size: 1.45rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 16px; font-size: 0.92rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; box-shadow: 0 1px 2px rgba(17,24,39,.04), 0 1px 3px rgba(17,24,39,.06); }
+  dl { margin: 0; display: grid; gap: 14px; }
+  dt { font-size: 0.78rem; color: var(--muted); }
+  dd { margin: 2px 0 0; font-size: 1.08rem; font-weight: 600; overflow-wrap: anywhere; }
+  dd code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; }
+  .big { font-size: 1.9rem; letter-spacing: -0.02em; }
+  .net { font-size: 0.8rem; font-weight: 400; color: var(--muted); }
+  button { width: 100%; margin-top: 16px; padding: 15px; font: inherit; font-size: 1.05rem; font-weight: 700; border-radius: 12px; border: 0; background: var(--accent); color: #fff; }
+  button.quiet { background: none; color: var(--muted); border: 0; font-weight: 500; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 3px; margin-top: 8px; padding: 8px; }
+  button:disabled { opacity: 0.5; }
+  .msg { margin-top: 14px; font-size: 0.95rem; overflow-wrap: anywhere; }
+  .ok { color: var(--good); font-weight: 700; }
+  .err { color: var(--bad); }
+  .fine { color: var(--muted); font-size: 0.8rem; margin-top: 16px; }
+  .done { text-align: center; padding: 28px 18px; }
+  .done .tick { width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 2rem; font-weight: 700; }
+  .done h2 { margin: 0 0 6px; font-size: 1.6rem; }
+  .done p { margin: 0; color: var(--muted); }
+  .done .look { margin-top: 14px; color: var(--ink); font-weight: 600; }
+  .setup[hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brandrow"><img src="logo.svg" alt="" width="26" height="26">Seal Spend Guard</div>
+  <h1>Approve with a passkey</h1>
+  <p class="sub">Your device&#39;s passkey (fingerprint, face or device PIN) signs a code for the approval shown below. Check that the approval code matches the demo screen. The check happens on your device; only the signature is sent.</p>
+
+  <div class="card">
+    <p id="empty">Nothing is waiting for approval. On the demo screen, press “Approve on my phone”, then come back here.</p>
+    <dl id="details" hidden>
+      <div><dt>Pay to</dt><dd id="d-payee"></dd><dd><code id="d-recipient"></code></dd></div>
+      <div><dt>Amount</dt><dd class="big" id="d-amount"></dd></div>
+      <div><dt>Payments allowed</dt><dd id="d-uses"></dd></div>
+      <div><dt>Valid until</dt><dd id="d-expiry"></dd></div>
+      <div><dt>Approval code (matches the demo screen)</dt><dd><code id="d-code"></code></dd></div>
+    </dl>
+  </div>
+  <button type="button" id="approve" disabled>Approve with passkey</button>
+  <button type="button" id="reload" class="quiet">Check again</button>
+  <div class="card done" id="done" hidden><div class="tick">✓</div><h2>Approved</h2><p id="done-sum"></p><p class="look">Look at the big screen.</p></div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+
+  <div class="setup" id="setup-block" hidden>
+  <h2 style="font-size:1rem;margin:24px 0 8px">One-time setup on this device</h2>
+  <button type="button" id="register" class="quiet">Register this device's passkey</button>
+  <pre id="setup" hidden></pre>
+  <p class="fine">Passkeys need a secure page: this works on localhost, or over HTTPS.</p>
+  </div>
+</main>
+<script src="passkey.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Only the local demo's build inputs enter the Docker context.
+**
+!package.json
+!package-lock.json
+!hardhat.config.ts
+!remappings.txt
+!tsconfig.json
+!contracts/
+!contracts/*.sol
+!contracts/test/
+!contracts/test/*.sol
+!agent/
+!agent/*.ts
+!sdk/
+!sdk/*.ts
+!demo/
+!demo/*.ts
+!demo/web/
+!demo/web/*.html
+!demo/web/*.css
+!demo/web/*.js
+!demo/web/icons/
+!demo/web/icons/*
+!demo/web/*.svg
+!demo/web/*.png

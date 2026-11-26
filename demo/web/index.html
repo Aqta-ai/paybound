@@ -1,0 +1,170 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seal Spend Guard</title>
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="side" aria-label="Spend Guard">
+  <a class="side-brand" href="#app-top"><span class="logo" data-icon="shield" aria-hidden="true"></span><b>Spend Guard</b></a>
+  <nav class="side-nav">
+    <a href="#approve-h" data-i18n="navApprove">Approvals</a>
+    <a href="#agent-h" data-i18n="navAgent">Agent inbox</a>
+    <a href="#vault-h" data-i18n="navPay">Payments</a>
+    <a href="#events" data-i18n="navLog">Activity</a>
+  </nav>
+  <div class="me">
+    <span class="avatar" aria-hidden="true">M</span>
+    <div><b>Mai</b><small>Clay &amp; Co.</small></div>
+  </div>
+</aside>
+<div class="app" id="app-top">
+<header class="top">
+  <div class="brand">
+    <span class="logo" data-icon="shield" aria-hidden="true"></span><h1 data-i18n="title">Seal Spend Guard</h1>
+    <span class="badge" id="network"></span>
+    <span class="badge" id="model"></span>
+  </div>
+  <div class="controls">
+    <button type="button" id="theme" class="theme-btn" aria-label="Light or dark">&#9790;</button>
+    <label class="sr" for="scenario" data-i18n="scenario">Scenario</label>
+    <select id="scenario"></select>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="th" aria-pressed="false">ไทย</button>
+      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+    </div>
+  </div>
+</header>
+<p class="review-note" id="review-note" hidden data-i18n="thReview">Thai text: needs native review</p>
+
+<nav class="steps" id="steps" hidden aria-label="Demo steps">
+  <ol>
+    <li data-step="1"><span>1</span><b data-i18n="st1">Approve one payment</b></li>
+    <li data-step="2"><span>2</span><b data-i18n="st2">Try to trick the agent</b></li>
+    <li data-step="3"><span>3</span><b data-i18n="st3">Pay the real invoice</b></li>
+    <li data-step="4"><span>4</span><b data-i18n="st4">Check it yourself</b></li>
+  </ol>
+</nav>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+<p class="error-banner" id="error" role="alert" hidden></p>
+
+<section class="approve" aria-labelledby="approve-h">
+  <div class="story">
+    <h2 id="approve-h" data-i18n="step1">1. A person approves one payment</h2>
+    <p id="blurb"></p>
+  </div>
+  <div class="request">
+    <div class="req-card">
+      <div class="req-label" data-i18n="request">Payment request</div>
+      <code id="request"></code>
+      <button type="button" id="prefill" data-i18n="useRequest">Use this request</button>
+    </div>
+    <form id="approve-form" class="form">
+      <label><span data-i18n="payTo">Pay to</span><input id="f-payee" readonly></label>
+      <label><span data-i18n="amount">Amount per payment</span><input id="f-amount" readonly></label>
+      <label><span data-i18n="uses">Payments allowed</span><input id="f-uses" readonly></label>
+      <label><span data-i18n="valid">Valid for</span><input id="f-hours" readonly></label>
+      <button type="button" id="approve-phone" class="primary" data-icon="phone" data-i18n="signPhone" disabled>Approve on my phone</button>
+      <p class="phone-wait" id="phone-wait" hidden></p>
+      <button type="submit" id="approve" class="quiet" data-icon="laptop" data-i18n="sign" disabled>Demo signer on this laptop</button>
+      <p class="approved" id="approved" hidden></p>
+    </form>
+  </div>
+</section>
+
+<main class="split">
+  <section class="pane agent" aria-labelledby="agent-h">
+    <h2 id="agent-h" data-icon="bot" data-i18n="agentPane">AI agent: inbox and decisions</h2>
+    <p class="hint" data-i18n="agentHint">The agent follows whatever the latest email says. Pick an email and let it act.</p>
+    <ul class="inbox" id="inbox"></ul>
+    <form id="judge-form" class="judge">
+      <label for="judge-addr" data-i18n="judgeLabel">Your turn: paste your own testnet wallet into a fake support message</label>
+      <div class="judge-row">
+        <input id="judge-addr" autocomplete="off" spellcheck="false" placeholder="0x...">
+        <button type="submit" id="judge-go" class="danger-outline" data-icon="send" data-i18n="judgeGo">Send it to the agent</button>
+      </div>
+    </form>
+    <div class="market" id="market" hidden>
+      <p class="hint" id="market-mode"></p>
+      <button type="button" id="sim-depeg" class="quiet" data-i18n="simDepeg">Simulate a depeg: stablecoin at $0.97</button>
+      <button type="button" id="sim-clear" class="quiet" data-i18n="simClear" hidden>Clear the simulated price</button>
+      <button type="button" id="sim-fx" class="quiet" data-i18n="simFx">Simulate a 3% baht move</button>
+      <button type="button" id="sim-fx-clear" class="quiet" data-i18n="simFxClear" hidden>Clear the baht move</button>
+      <p class="sim-on" id="sim-on" hidden data-i18n="simOn">Simulated price on</p>
+    </div>
+    <button type="button" id="stolen" class="danger-outline" data-i18n="stolen">Thief with the agent's key signs their own approval</button>
+    <h3 data-i18n="reasoning">What the agent did</h3>
+    <ol class="reasoning" id="reasoning"></ol>
+  </section>
+
+  <section class="pane vault" aria-labelledby="vault-h">
+    <div class="vault-head">
+      <h2 id="vault-h" data-icon="lock" data-i18n="vaultPane">Vault: decisions on the chain</h2>
+      <span class="state" id="vault-state"></span>
+    </div>
+    <canvas id="vault-scene" aria-hidden="true"></canvas>
+    <div class="guardian">
+      <button type="button" id="freeze" class="freeze" data-icon="snow" data-i18n="freeze">Freeze vault</button>
+      <button type="button" id="unfreeze" class="quiet" data-i18n="unfreeze">Owner: unfreeze</button>
+    </div>
+    <dl class="balances">
+      <div><dt data-i18n="paidPayee">Paid to the approved payee</dt><dd id="b-payee">0</dd></div>
+      <div><dt data-i18n="paidAttacker">Paid to the attacker</dt><dd id="b-attacker">0</dd></div>
+      <div><dt data-i18n="inVault">Left in the vault</dt><dd id="b-vault">0</dd></div>
+    </dl>
+    <div class="tally" id="tally" aria-live="polite">
+      <div><b id="t-tries">0</b><span data-i18n="tTries">attempts to redirect the money</span></div>
+      <div><b id="t-refused">0</b><span data-i18n="tRefused">refused on the chain</span></div>
+      <div><b id="t-taken">0</b><span data-i18n="tTaken">test USD taken by attackers</span></div>
+    </div>
+    <div class="guard" id="guard" aria-live="polite">
+      <img src="ron.png" alt="" width="56" height="56">
+      <p id="guard-say" data-i18n="guardIdle">I only let through what Mai approved.</p>
+    </div>
+    <button type="button" id="show-result" class="primary show-result" data-icon="check" data-i18n="showResult">Show the result</button>
+    <h3 data-icon="list" data-i18n="eventLog">Event log, read from the chain</h3>
+    <ol class="events" id="events" aria-live="polite"></ol>
+    <p class="addr" id="vault-addr"></p>
+  </section>
+</main>
+</div>
+
+
+
+<div class="result" id="result" hidden role="dialog" aria-modal="true" aria-labelledby="result-h">
+  <div class="result-card">
+    <button type="button" id="result-close" class="result-x" aria-label="Close">×</button>
+    <div class="result-head">
+      <span class="result-tick" aria-hidden="true">✓</span>
+      <div>
+        <h2 id="result-h"></h2>
+        <p class="result-sub" id="result-sub"></p>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="result-list">
+        <h3 data-i18n="resWhat">What happened, in order</h3>
+        <ol id="result-rows"></ol>
+        <p class="fine" id="result-foot"></p>
+      </div>
+      <div class="verify" id="result-verify" hidden>
+        <img id="result-qr" alt="" width="200" height="200">
+        <h3 data-i18n="verifyH">Check it yourself</h3>
+        <p data-i18n="verifyP">Scan with your own phone. The explorer shows every decision the vault made, from the chain, not from us.</p>
+        <a id="result-link" class="result-open" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+<script src="scene.js"></script>
+<script type="module" src="vault3d.js"></script>
+</body>
+</html>
