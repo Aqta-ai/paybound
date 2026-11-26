@@ -13,7 +13,6 @@ is refused, and the refusal is written to the chain with its reason.
 
 ## Check it yourself on BSC testnet
 
-<p align="center"><img src="docs/media/paybound-evidence.png" width="640" alt="Eight vault decisions on BSC testnet, each with a Seal record"></p>
 
 Four attacks. Zero sent. Run on 27 November 2026; the full run is in [`evidence/wp9-four-attacks-testnet-2026-11-27.json`](evidence/wp9-four-attacks-testnet-2026-11-27.json).
 
@@ -35,7 +34,6 @@ Approved in Phantom (27 November): a person approved one payment in the Phantom 
 
 ### Eight decisions, eight Seal records
 
-<p align="center"><img src="docs/media/paybound-seal-records.png" width="640" alt="The open verifier checks a Seal record; a changed byte fails"></p>
 
 All eight vault decisions across our two demonstrated runs have Seal-signed records, independently verified against Aqta's published key. Reproduce every check with one command:
 
