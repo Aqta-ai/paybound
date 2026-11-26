@@ -12,7 +12,7 @@ else{
  document.getElementById("sPaid").textContent=paid.length;document.getElementById("sRef").textContent=ref.length;
  document.getElementById("sWrong").textContent=paid.filter(e=>e.recipient.toLowerCase()!==SUPPLIER).length;
  document.getElementById("meta").textContent=`${ev.events.length} decisions · blocks ${ev.start.toLocaleString()}–${ev.head.toLocaleString()}`;
- document.getElementById("list").innerHTML=ev.events.map((e,i)=>{const rec=byTx.get(e.tx.toLowerCase());return `<div class="row" id="tx-${e.tx.toLowerCase()}" data-i="${i}">
+ document.getElementById("list").innerHTML=ev.events.map((e,i)=>{const rec=byTx.get(e.tx.toLowerCase());return `<div class="row" id="tx-${e.tx.toLowerCase()}" data-kind="${e.kind}" data-i="${i}">
  <span><span class="badge ${e.kind}">${e.kind==="paid"?"Paid":"Refused"}</span></span>
  <span>${e.kind==="paid"?"Approved supplier":REASONS[e.reason]||"Refused"} <span class="m">to ${short(e.recipient)}</span></span>
  <span class="num hide">${amt(e.amount)} <span class="muted">test USD</span></span>
@@ -28,3 +28,15 @@ document.addEventListener("click",async(ev)=>{const b=ev.target.closest(".btn.se
 
 document.addEventListener("click",(ev)=>{const a=ev.target.closest(".side a.k");if(!a)return;ev.preventDefault();const row=document.getElementById(a.getAttribute("href").slice(1));if(!row)return;
  row.scrollIntoView({behavior:"smooth",block:"center"});row.classList.add("hl");setTimeout(()=>row.classList.remove("hl"),1600);const s=row.querySelector(".btn.seal");if(s&&!row.querySelector(".check"))s.click();});
+
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!ev.error){
+ const c=document.getElementById("c3d");
+ const draw2d=()=>{const v=document.getElementById("viz");v.style.background="linear-gradient(90deg,#fff,#eef8f2 50%,#fff)";};
+ if(reduce||innerWidth<700||!window.WebGLRenderingContext){draw2d();}
+ else requestIdleCallback?requestIdleCallback(()=>import("./hero3d.js").then(m=>m.startHero(c,ev.events)).catch(draw2d)):setTimeout(()=>import("./hero3d.js").then(m=>m.startHero(c,ev.events)).catch(draw2d),300);
+}
+let filt="all",qv="";
+function applyFilter(){document.querySelectorAll("#list .row").forEach(r=>{const ok=(filt==="all"||r.dataset.kind===filt)&&(!qv||r.id.includes(qv));r.style.display=ok?"":"none"})}
+document.addEventListener("click",e=>{const b=e.target.closest(".chip2");if(!b)return;document.querySelectorAll(".chip2").forEach(x=>x.classList.toggle("on",x===b));filt=b.dataset.f;applyFilter();});
+document.getElementById("q").addEventListener("input",e=>{qv=e.target.value.trim().toLowerCase();applyFilter();});
