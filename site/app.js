@@ -40,3 +40,22 @@ let filt="all",qv="";
 function applyFilter(){document.querySelectorAll("#list .row").forEach(r=>{const ok=(filt==="all"||r.dataset.kind===filt)&&(!qv||r.id.includes(qv));r.style.display=ok?"":"none"})}
 document.addEventListener("click",e=>{const b=e.target.closest(".chip2");if(!b)return;document.querySelectorAll(".chip2").forEach(x=>x.classList.toggle("on",x===b));filt=b.dataset.f;applyFilter();});
 document.getElementById("q").addEventListener("input",e=>{qv=e.target.value.trim().toLowerCase();applyFilter();});
+
+const SUP="0xc2177666CF501222986A3c447f03327F9D366cc6";
+const rnd=()=>"0x"+[...crypto.getRandomValues(new Uint8Array(20))].map(b=>b.toString(16).padStart(2,"0")).join("");
+const tw=document.getElementById("tw"),ta=document.getElementById("ta"),tf=document.getElementById("tf"),tv=document.getElementById("tv");
+tw.value=rnd();
+const EXPLAIN={RecipientMismatch:"That wallet is not the one the person approved. Nothing would move.",AmountAboveApproval:"More than the approved ceiling of 3,400. Nothing would move.",BadSignature:"The approval was not signed by an approver. Nothing would move.",ZeroAmount:"Zero is not a payment.",Ok:"Exactly what the person approved: the vault would pay this once. (Read-only check, so nothing was sent.)"};
+async function ask(){tv.className="verdict";tv.innerHTML='<div class="big">Asking the vault…</div>';
+ try{const r=await fetch(`/api/check?recipient=${encodeURIComponent(tw.value.trim())}&amount=${encodeURIComponent(ta.value.trim())}&forge=${tf.checked?1:0}`).then(x=>x.json());
+  if(r.error){tv.innerHTML=`<div class="big">Check the input</div><div class="ex">${r.error}</div>`;return}
+  tv.className="verdict "+(r.wouldPay?"yes":"no");
+  tv.innerHTML=`<div class="big">${r.wouldPay?"Would pay":"Refused"}</div><div class="why">${r.reason}</div><div class="ex">${EXPLAIN[r.reason]||"The vault refused this request."}</div><div class="ex">Answered by the vault contract's own check on BNB Smart Chain testnet.</div>`;
+ }catch{tv.innerHTML='<div class="big">Try again</div><div class="ex">The vault could not be reached.</div>'}}
+document.getElementById("tgo").addEventListener("click",ask);
+document.querySelector(".presets").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const p=b.dataset.p;
+ if(p==="wallet"){tw.value=rnd();ta.value="3400";tf.checked=false}
+ if(p==="amount"){tw.value=SUP;ta.value="3900";tf.checked=false}
+ if(p==="forge"){tw.value=SUP;ta.value="3400";tf.checked=true}
+ if(p==="real"){tw.value=SUP;ta.value="3400";tf.checked=false}
+ ask();});

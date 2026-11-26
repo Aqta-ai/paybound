@@ -1,1 +1,1 @@
-{"type":"module","private":true}
+{"type":"module","private":true,"dependencies":{"viem":"2.21.55"}}

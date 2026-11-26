@@ -53,12 +53,27 @@ h2.sec{font-size:15px;margin:6px 0 12px}
 .filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.chip2{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font-size:12.5px;cursor:pointer}
 .chip2.on{background:var(--ink);color:#fff;border-color:var(--ink)}.filters input{border:1px solid var(--line);border-radius:8px;padding:5px 10px;font:inherit;font-size:13px;width:200px}
 @media(max-width:900px){.heroGrid{grid-template-columns:1fr}.heroViz{height:240px}}
+.try{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;margin:0 0 28px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.try h2{margin:0 0 4px;font-size:22px;letter-spacing:-.02em}.try p.s{margin:0 0 14px;color:var(--mut);font-size:14px}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.presets button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.presets button:hover{border-color:#c9d1ce}.fld{display:grid;grid-template-columns:1fr 130px;gap:10px;margin-bottom:10px}
+.fld label{font-size:12px;color:var(--mut);display:block;margin-bottom:4px}.fld input{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font:inherit;font-family:var(--mono);font-size:13px}
+.frg{font-size:13px;display:flex;gap:8px;align-items:center;margin:4px 0 14px}.go{background:var(--ink);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:600;cursor:pointer}
+.verdict{border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;justify-content:center;min-height:200px;background:#fbfcfb;transition:background .2s,border-color .2s}
+.verdict .big{font-size:30px;font-weight:800;letter-spacing:-.02em}.verdict .why{font-family:var(--mono);font-size:14px;margin-top:6px}.verdict .ex{font-size:13.5px;color:var(--mut);margin-top:10px}
+.verdict.no{background:var(--rb);border-color:#f3c9c4}.verdict.no .big{color:var(--r)}.verdict.yes{background:var(--gb);border-color:#bfe3d0}.verdict.yes .big{color:var(--g)}
+@media(max-width:900px){.try{grid-template-columns:1fr}}
 </style></head><body>
 <header><div class="wrap"><div class="brand"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#0E7C45"/><path d="M10 21V8h5.2a4.3 4.3 0 0 1 0 8.6H10" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19.5" cy="20" r="2.1" fill="#8EE6B4"/></svg> Paybound</div><div class="live"><span class="dot"></span>Live from BNB Smart Chain testnet</div></div></header>
 <main class="wrap">
 <div class="heroGrid"><div><h1>An AI agent can be tricked.<br><em>This vault pays only what a person approved.</em></h1>
 <p class="sub">Every payment and refusal below is read live from the Paybound vault on BNB Smart Chain testnet. Open any transaction on BscScan, or check its Seal record yourself.</p></div><div class="heroViz" id="viz"><canvas id="c3d" aria-label="Recent vault decisions as light paths"></canvas><span class="lbl" style="left:14px;top:12px">agent requests</span><span class="lbl" style="left:47%;top:12px">vault</span><span class="lbl" style="right:14px;top:12px">approved supplier</span><div class="lg"><span><i style="background:#0E7C45"></i>paid, passes through</span><span><i style="background:#C2362B"></i>refused at the vault</span></div></div></div>
-<div class="stats"><div class="stat"><b id="sPaid">–</b><span>paid, as approved</span></div><div class="stat"><b id="sRef">–</b><span>refused on chain</span></div><div class="stat"><b id="sWrong">–</b><span>paid outside a signed approval</span></div><div class="stat"><b>8 / 8</b><span>Seal records verified</span></div></div>
+<section class="try" id="try"><div><h2>Try to break it</h2><p class="s">You are the attacker. Change the wallet, raise the amount or forge the approval, and the real vault on BNB testnet answers. Read-only: no transaction, nothing moves.</p>
+<div class="presets"><button data-p="wallet">Change the wallet</button><button data-p="amount">Raise the amount</button><button data-p="forge">Forge the approval</button><button data-p="real">Pay the real invoice</button></div>
+<div class="fld"><div><label for="tw">Pay to wallet</label><input id="tw" spellcheck="false"></div><div><label for="ta">Amount (test USD)</label><input id="ta" value="3400" inputmode="decimal"></div></div>
+<label class="frg"><input type="checkbox" id="tf"> Forge the approval signature</label>
+<button class="go" id="tgo">Ask the vault</button></div>
+<div class="verdict" id="tv"><div class="big">Your move</div><div class="ex">The approval on file: pay Kowloon Ceramics (0xc217…6cc6) up to 3,400 test USD, once. A person signed it; the agent cannot change it.</div></div></section><div class="stats"><div class="stat"><b id="sPaid">–</b><span>paid, as approved</span></div><div class="stat"><b id="sRef">–</b><span>refused on chain</span></div><div class="stat"><b id="sWrong">–</b><span>paid outside a signed approval</span></div><div class="stat"><b>8 / 8</b><span>Seal records verified</span></div></div>
 <div class="built"><h3>Built with</h3>
 <div><b>BNB Smart Chain</b><span>the vault contract and every refusal event</span></div>
 <div><b>CoinMarketCap API</b><span>live USDT price and local-currency amount before paying</span></div>
