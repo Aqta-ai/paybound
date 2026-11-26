@@ -12,7 +12,7 @@ else{
  document.getElementById("sPaid").textContent=paid.length;document.getElementById("sRef").textContent=ref.length;
  document.getElementById("sWrong").textContent=paid.filter(e=>e.recipient.toLowerCase()!==SUPPLIER).length;
  document.getElementById("meta").textContent=`${ev.events.length} decisions · blocks ${ev.start.toLocaleString()}–${ev.head.toLocaleString()}`;
- document.getElementById("list").innerHTML=ev.events.map((e,i)=>{const rec=byTx.get(e.tx.toLowerCase());return `<div class="row" data-i="${i}">
+ document.getElementById("list").innerHTML=ev.events.map((e,i)=>{const rec=byTx.get(e.tx.toLowerCase());return `<div class="row" id="tx-${e.tx.toLowerCase()}" data-i="${i}">
  <span><span class="badge ${e.kind}">${e.kind==="paid"?"Paid":"Refused"}</span></span>
  <span>${e.kind==="paid"?"Approved supplier":REASONS[e.reason]||"Refused"} <span class="m">to ${short(e.recipient)}</span></span>
  <span class="num hide">${amt(e.amount)} <span class="muted">test USD</span></span>
@@ -25,3 +25,6 @@ document.addEventListener("click",async(ev)=>{const b=ev.target.closest(".btn.se
  let log="";try{const p=await fetch("/api/proof?id="+r.record.action_id).then(x=>x.json());log=Number.isInteger(p.leaf_index)?`<span class="ok">✓</span> In Seal's public log: leaf ${p.leaf_index.toLocaleString()} of ${p.tree_size.toLocaleString()}`:`<span class="bad">✕</span> Not found in the log`}catch{log="Log unavailable right now"}
  el.innerHTML=`<ul style="margin:0;padding:0"><li><span class="${txOk?"ok":"bad"}">${txOk?"✓":"✕"}</span> The record names this exact transaction</li><li><span class="${hashOk?"ok":"bad"}">${hashOk?"✓":"✕"}</span> SHA-256 of the record's arguments matches its signed hash (computed in your browser)</li><li>${log}</li><li class="muted">Check the Ed25519 signature offline: <span class="m">npx aqta-verify-receipt record.json --profile action-1 --key 9Y3Eiq6V8QjRDUM5nPqSwKIOPQaoEU4SbagfYFdvWa4</span> · record id <span class="m">${r.record.action_id}</span></li></ul>`;
 });
+
+document.addEventListener("click",(ev)=>{const a=ev.target.closest(".side a.k");if(!a)return;ev.preventDefault();const row=document.getElementById(a.getAttribute("href").slice(1));if(!row)return;
+ row.scrollIntoView({behavior:"smooth",block:"center"});row.classList.add("hl");setTimeout(()=>row.classList.remove("hl"),1600);const s=row.querySelector(".btn.seal");if(s&&!row.querySelector(".check"))s.click();});
