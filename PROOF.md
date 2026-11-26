@@ -40,15 +40,15 @@ Evidence, including the model's own message: [`evidence/wp6-real-ai-testnet-2026
 
 Phantom signs on BSC testnet only in its Testnet Mode. Evidence: [`evidence/wp11-phantom-approval-testnet-2026-11-27.json`](evidence/wp11-phantom-approval-testnet-2026-11-27.json)
 
-## Eight decisions, eight Seal records
+## Ten decisions, ten Seal records
 
-Aqta's Seal signed an ACTION-v1 record (Ed25519) of each vault decision in the first two runs. Each binds the transaction hash, block, reason and event bytes by SHA-256 and sits in Seal's public transparency log (leaves 5718 to 5721 and 5728 to 5731).
+Aqta's Seal signed an ACTION-v1 record (Ed25519) of each vault decision in all three runs above. Each binds the transaction hash, block, reason and event bytes by SHA-256 and sits in Seal's public transparency log (leaves 5718 to 5721, 5728 to 5731, 5738 and 5739).
 
 ```sh
-npm run verify:seal   # 8 of 8: args hash, signature against Aqta's published key, log inclusion
+npm run verify:seal   # 10 of 10: args hash, signature against Aqta's published key, log inclusion
 ```
 
-Records: [`wp10`](evidence/wp10-seal-records-testnet-2026-11-27.json), [`wp10b`](evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json)
+Records: [`wp10`](evidence/wp10-seal-records-testnet-2026-11-27.json), [`wp10b`](evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json), [`wp10c`](evidence/wp10c-seal-records-phantom-testnet-2026-11-27.json)
 
 ## CoinMarketCap and Atlas
 

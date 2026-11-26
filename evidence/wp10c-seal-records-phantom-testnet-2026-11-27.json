@@ -1,0 +1,92 @@
+{
+  "what": "Seal-signed ACTION-v1 records of each vault decision in wp11-phantom-approval-testnet-2026-11-27.json",
+  "how": "args are the vault's on-chain event, read from the receipt; Seal signs SHA-256 of their canonical JSON as args_hash",
+  "verify": [
+    "npx aqta-verify-receipt <record.json> --profile action-1 --key <key from https://api.aqta.ai/v1/attestation/public-key>",
+    "recompute sha256 of the canonical args and compare with record.args_hash",
+    "GET https://api.aqta.ai/v1/public/transparency/proof/<action_id> for log inclusion"
+  ],
+  "seal_api": "https://api.aqta.ai",
+  "records": [
+    {
+      "attack": "attack: pay a fresh wallet 0x47a31a6ab2c43488f56b6444daec1f2032fb2aca",
+      "vault_outcome": "Refused",
+      "vault_reason": "RecipientMismatch",
+      "args": {
+        "chain_id": "97",
+        "vault": "0x190d9e1a4d9193371aa7b884db61bd93e71ae146",
+        "tx_hash": "0xaf103152c00674de1c39bd46bc3bd44d29182792b612d1e3e50231cab84a742f",
+        "block_number": "145059835",
+        "block_hash": "0xfa9d8ed927db0ef680347adac74f212554eb5e9e077cf7e98fb6799e6c16fdaa",
+        "log_index": "2",
+        "event_topics": [
+          "0xf20bba9b3164b676fc624b091d5399791077605c97be6f33081ce1581a867a36",
+          "0x1a6ccc790c0be0bbf5699c1cb481658d679ae1c5e1d5f60b86fd585a5567472b",
+          "0x000000000000000000000000d7ed8d1aeb93235226934a48cf5fb523f602bb35",
+          "0x00000000000000000000000047a31a6ab2c43488f56b6444daec1f2032fb2aca"
+        ],
+        "event_data": "0x0000000000000000000000003b6875dac9c9a42958f63cd541f8f410fb7775950000000000000000000000000000000000000000000000b8507a8207282000000000000000000000000000000000000000000000000000000000000000000009",
+        "vault_outcome": "Refused",
+        "vault_reason": "RecipientMismatch",
+        "attack": "attack: pay a fresh wallet 0x47a31a6ab2c43488f56b6444daec1f2032fb2aca"
+      },
+      "args_hash_recomputed": "33094d67215afe9fd5127144120333564dd5eb44dea75fc8a84c9b308406a458",
+      "seal_outcome": "ALLOWED",
+      "record": {
+        "v": "action-1",
+        "action_id": "6f6d575c-b683-47be-864e-c3b3a021531a",
+        "org_id": "75ae5986-daa7-4bbe-bf63-49905002fcc0",
+        "session_id": "",
+        "intent_hash": "",
+        "agent": "paybound-agent/1.0",
+        "tool": "bnb.vault.record_decision",
+        "args_hash": "33094d67215afe9fd5127144120333564dd5eb44dea75fc8a84c9b308406a458",
+        "outcome": "ALLOWED",
+        "policy_applied": [],
+        "timestamp": "2026-11-26T23:56:39.584280+00:00",
+        "public_key": "9Y3Eiq6V8QjRDUM5nPqSwKIOPQaoEU4SbagfYFdvWa4",
+        "signature": "AS3zYMcAcvg_rkzBzUV_KdDm6vR8YpMq8aiUy2dpmieCS9rGnltpA5LBe1ksAHIz4PdgqcvKIO9O4zYlXblICw"
+      }
+    },
+    {
+      "attack": "real invoice",
+      "vault_outcome": "Executed",
+      "vault_reason": "",
+      "args": {
+        "chain_id": "97",
+        "vault": "0x190d9e1a4d9193371aa7b884db61bd93e71ae146",
+        "tx_hash": "0xdb589fcbd431ba9fbda016aef764788f4f455c9380be5c1dd23f818133b29397",
+        "block_number": "145059850",
+        "block_hash": "0x163a99793fb789c6f9d3b1a17049b6e97bc1c02c396bc7c6aca29b4ea891e4a1",
+        "log_index": "1",
+        "event_topics": [
+          "0x956921cde5479120cb06d2311b81dab58237a2966828047963ae4a89254b5448",
+          "0x1a6ccc790c0be0bbf5699c1cb481658d679ae1c5e1d5f60b86fd585a5567472b",
+          "0x000000000000000000000000d7ed8d1aeb93235226934a48cf5fb523f602bb35",
+          "0x000000000000000000000000c2177666cf501222986a3c447f03327f9d366cc6"
+        ],
+        "event_data": "0x0000000000000000000000003b6875dac9c9a42958f63cd541f8f410fb7775950000000000000000000000000000000000000000000000b8507a82072820000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000b8507a820728200000",
+        "vault_outcome": "Executed",
+        "vault_reason": "",
+        "attack": "real invoice"
+      },
+      "args_hash_recomputed": "ff6c7ebee9d917efc2c8bf51cac1417b559bea4863371905ea153717fee29939",
+      "seal_outcome": "ALLOWED",
+      "record": {
+        "v": "action-1",
+        "action_id": "9e41a459-5106-4981-8f90-3110bb9f3ff8",
+        "org_id": "75ae5986-daa7-4bbe-bf63-49905002fcc0",
+        "session_id": "",
+        "intent_hash": "",
+        "agent": "paybound-agent/1.0",
+        "tool": "bnb.vault.record_decision",
+        "args_hash": "ff6c7ebee9d917efc2c8bf51cac1417b559bea4863371905ea153717fee29939",
+        "outcome": "ALLOWED",
+        "policy_applied": [],
+        "timestamp": "2026-11-26T23:56:54.647625+00:00",
+        "public_key": "9Y3Eiq6V8QjRDUM5nPqSwKIOPQaoEU4SbagfYFdvWa4",
+        "signature": "wIm822ip2YR1Ee9bFunJW2yyckKqnE12U0li3P4yEVRIXYw4N916D8wxafgxjIs6Gg5omchbdd1yU2OCWbCMCA"
+      }
+    }
+  ]
+}

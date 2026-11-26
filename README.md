@@ -35,16 +35,16 @@ A real AI, fooled (26 November): a local open model (Qwen2.5 3B via Ollama) read
 
 Approved in Phantom (27 November): a person approved one payment in the Phantom wallet (Testnet Mode). An attack on it was refused, `RecipientMismatch` ([0xaf103152…](https://testnet.bscscan.com/tx/0xaf103152c00674de1c39bd46bc3bd44d29182792b612d1e3e50231cab84a742f)), and the real invoice was paid under that approval ([0xdb589fcb…](https://testnet.bscscan.com/tx/0xdb589fcbd431ba9fbda016aef764788f4f455c9380be5c1dd23f818133b29397)). Phantom signs on BSC testnet only in Testnet Mode. Evidence: [`evidence/wp11-phantom-approval-testnet-2026-11-27.json`](evidence/wp11-phantom-approval-testnet-2026-11-27.json).
 
-### Eight decisions, eight Seal records
+### Ten decisions, ten Seal records
 
 
-All eight vault decisions across our two demonstrated runs have Seal-signed records, independently verified against Aqta's published key. Reproduce every check with one command:
+All ten vault decisions across our three demonstrated runs (four attacks, the real AI, the Phantom approval) have Seal-signed records, independently verified against Aqta's published key. Reproduce every check with one command:
 
 ```sh
 npm run verify:seal   # recomputes each args hash, verifies each signature, confirms each log leaf
 ```
 
-For every vault decision above, the five 27 November transactions and the three of the 26 November real-AI run, `scripts/seal-record-vault-decisions.ts` reads the vault's own event from the chain receipt and Aqta's Seal service signs a record of it (ACTION-v1, Ed25519). The record binds the chain id, vault, transaction hash, block, log index, event topics and data, and the vault's outcome and reason, as the SHA-256 of their canonical JSON. The records are in [`evidence/wp10-seal-records-testnet-2026-11-27.json`](evidence/wp10-seal-records-testnet-2026-11-27.json) and [`evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json`](evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json), and sit in Seal's public transparency log (leaves 5718 to 5721 and 5728 to 5731). Some public RPCs prune older receipts; the official `https://data-seed-prebsc-1-s1.bnbchain.org:8545` returns them.
+For every vault decision above, the five 27 November transactions and the three of the 26 November real-AI run, `scripts/seal-record-vault-decisions.ts` reads the vault's own event from the chain receipt and Aqta's Seal service signs a record of it (ACTION-v1, Ed25519). The record binds the chain id, vault, transaction hash, block, log index, event topics and data, and the vault's outcome and reason, as the SHA-256 of their canonical JSON. The records are in [`evidence/wp10-seal-records-testnet-2026-11-27.json`](evidence/wp10-seal-records-testnet-2026-11-27.json) and [`evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json`](evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json), and sit in Seal's public transparency log (leaves 5718 to 5721, 5728 to 5731, 5738 and 5739). Some public RPCs prune older receipts; the official `https://data-seed-prebsc-1-s1.bnbchain.org:8545` returns them.
 
 ```sh
 npx aqta-verify-receipt record.json --profile action-1 --key 9Y3Eiq6V8QjRDUM5nPqSwKIOPQaoEU4SbagfYFdvWa4

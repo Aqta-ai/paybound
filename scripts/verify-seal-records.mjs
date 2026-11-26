@@ -8,7 +8,7 @@ import { execFileSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const FILES = ["evidence/wp10-seal-records-testnet-2026-11-27.json", "evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json"];
+const FILES = ["evidence/wp10-seal-records-testnet-2026-11-27.json", "evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json", "evidence/wp10c-seal-records-phantom-testnet-2026-11-27.json"];
 const canonical = (v) => Array.isArray(v) ? `[${v.map(canonical).join(",")}]`
   : v && typeof v === "object" ? `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`).join(",")}}`
   : JSON.stringify(v);
