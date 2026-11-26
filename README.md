@@ -1,6 +1,6 @@
 # Paybound: an AI agent can only pay what a person approved
 
-<p align="center"><img src="docs/media/spend-guard-demo.gif" width="760" alt="A tricked AI agent tries to pay a scammer; the vault refuses on chain and the real invoice is paid once"></p>
+<p align="center"><img src="docs/media/paybound-cover.png" width="760" alt="Paybound: four attacks on BNB Chain testnet, zero sent to attackers"></p>
 
 By Aqta, the team behind Seal: security for AI agents that act. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The code and packages still use the working name Spend Guard (`SpendGuardVault`, `@aqta/spend-guard`).
 It runs on BNB Smart Chain testnet. It deploys only an open-mint test token (Test USD) for testnet. There is no project token.
@@ -12,6 +12,8 @@ this recipient, this token, up to this amount, this many times, until this time.
 is refused, and the refusal is written to the chain with its reason.
 
 ## Check it yourself on BSC testnet
+
+<p align="center"><img src="docs/media/paybound-evidence.png" width="640" alt="Eight vault decisions on BSC testnet, each with a Seal record"></p>
 
 Four attacks. Zero sent. Run on 27 November 2026; the full run is in [`evidence/wp9-four-attacks-testnet-2026-11-27.json`](evidence/wp9-four-attacks-testnet-2026-11-27.json).
 
@@ -27,9 +29,13 @@ Wrong wallets received 0. In these runs the approval was signed by our testnet a
 
 A real AI, fooled (26 November): a local open model (Qwen2.5 3B via Ollama) read a fake "payout wallet updated" message and wrote a 3,400 payment to a fresh scammer wallet. Refused, `RecipientMismatch`: [0xc7aca06e…](https://testnet.bscscan.com/tx/0xc7aca06e38fa998ef560676453cb1d37531135ff0b72a93c71fdd6c33e79dd7e). The model's message and every step are in [`evidence/wp6-real-ai-testnet-2026-11-26.json`](evidence/wp6-real-ai-testnet-2026-11-26.json).
 
+<p align="center"><img src="docs/media/paybound-phantom.png" width="640" alt="A payment approved in Phantom; the attack was refused and the invoice paid"></p>
+
 Approved in Phantom (27 November): a person approved one payment in the Phantom wallet (Testnet Mode). An attack on it was refused, `RecipientMismatch` ([0xaf103152…](https://testnet.bscscan.com/tx/0xaf103152c00674de1c39bd46bc3bd44d29182792b612d1e3e50231cab84a742f)), and the real invoice was paid under that approval ([0xdb589fcb…](https://testnet.bscscan.com/tx/0xdb589fcbd431ba9fbda016aef764788f4f455c9380be5c1dd23f818133b29397)). Phantom signs on BSC testnet only in Testnet Mode. Evidence: [`evidence/wp11-phantom-approval-testnet-2026-11-27.json`](evidence/wp11-phantom-approval-testnet-2026-11-27.json).
 
 ### Eight decisions, eight Seal records
+
+<p align="center"><img src="docs/media/paybound-seal-records.png" width="640" alt="The open verifier checks a Seal record; a changed byte fails"></p>
 
 All eight vault decisions across our two demonstrated runs have Seal-signed records, independently verified against Aqta's published key. Reproduce every check with one command:
 
