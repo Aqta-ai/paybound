@@ -65,7 +65,9 @@
   }
 
   async function sign() {
-    const eth = window.ethereum;
+    // Prefer Phantom's EVM provider when it is installed: in some browsers another
+    // extension owns window.ethereum and the request never reaches Phantom.
+    const eth = (window.phantom && window.phantom.ethereum) || window.ethereum;
     if (!eth) {
       msg("No wallet found. Open this page in your wallet app's browser.", "err");
       return;

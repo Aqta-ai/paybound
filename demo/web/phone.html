@@ -38,7 +38,7 @@
 </head>
 <body>
 <main>
-  <div class="brandrow"><img src="logo.svg" alt="" width="26" height="26">Seal Spend Guard</div>
+  <div class="brandrow"><img src="logo.svg" alt="" width="26" height="26">Paybound</div>
   <h1>Approve one payment</h1>
   <p class="sub">Your wallet signs this approval: this wallet address, up to this amount, this many times, until this time. The agent cannot use the vault for anything else.</p>
   <div class="card" id="card"><p id="empty">Nothing is waiting for approval. On the demo screen, press “Approve on my phone”.</p>
@@ -55,7 +55,7 @@
   <button type="button" id="reload" class="quiet">Check again</button>
   <div class="card done" id="done" hidden><div class="tick">✓</div><h2>Approved</h2><p id="done-sum"></p><p class="look">Look at the big screen.</p></div>
   <p class="msg" id="msg" role="status" aria-live="polite"></p>
-  <p class="fine">Open this page inside your wallet app's browser (MetaMask, Trust Wallet, Binance Web3 Wallet or similar). Your key stays in your wallet; this page only receives the signature.</p>
+  <p class="fine">Open this page in a browser with an EVM wallet. Tested with Phantom in Testnet Mode. Your key stays in your wallet; this page only receives the signature.</p>
 </main>
 <script src="phone.js"></script>
 </body>

@@ -1,0 +1,14 @@
+{
+  "what": "A person approved one payment in the Phantom wallet (Testnet Mode, Comet browser) on BSC testnet; the agent was attacked and then paid the real invoice under that approval",
+  "network": "BSC testnet (chain 97)",
+  "vault": "0x190d9e1a4d9193371aa7b884db61bd93e71ae146",
+  "date": "2026-11-27",
+  "approver_added": { "address": "0x6D0A3651194378B13cEa208830174472B3CD9c74", "wallet": "Phantom (Testnet Mode)", "tx": "0x51091b95f385d889a1db48a254c8ed91019434ca9bda9a2afe29e3a204d36133" },
+  "approval": { "digest": "0x1a6ccc790c0be0bbf5699c1cb481658d679ae1c5e1d5f60b86fd585a5567472b", "signer": "0x6D0A3651194378B13cEa208830174472B3CD9c74", "recipient": "0xc2177666CF501222986A3c447f03327F9D366cc6", "max_amount": "3400 test dollars", "max_uses": 1, "signed_with": "eth_signTypedData_v4 via window.phantom.ethereum" },
+  "steps": [
+    { "step": "attack: pay a fresh wallet 0x47a31a6ab2c43488f56b6444daec1f2032fb2aca", "outcome": "Refused", "reason": "RecipientMismatch", "tx": "0xaf103152c00674de1c39bd46bc3bd44d29182792b612d1e3e50231cab84a742f" },
+    { "step": "real invoice", "outcome": "Executed", "amount": "3400 test dollars", "tx": "0xdb589fcbd431ba9fbda016aef764788f4f455c9380be5c1dd23f818133b29397" }
+  ],
+  "verified_by": "eth_getTransactionReceipt on https://data-seed-prebsc-1-s1.bnbchain.org:8545: both status 0x1, sent to the vault",
+  "limits": "Phantom signs on BSC testnet only in its Testnet Mode; in normal mode it refused chain 0x61 (error 4901). Other wallets were not tested in this run."
+}

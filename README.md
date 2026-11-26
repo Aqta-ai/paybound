@@ -27,6 +27,8 @@ Wrong wallets received 0. In these runs the approval was signed by our testnet a
 
 A real AI, fooled (26 November): a local open model (Qwen2.5 3B via Ollama) read a fake "payout wallet updated" message and wrote a 3,400 payment to a fresh scammer wallet. Refused, `RecipientMismatch`: [0xc7aca06e…](https://testnet.bscscan.com/tx/0xc7aca06e38fa998ef560676453cb1d37531135ff0b72a93c71fdd6c33e79dd7e). The model's message and every step are in [`evidence/wp6-real-ai-testnet-2026-11-26.json`](evidence/wp6-real-ai-testnet-2026-11-26.json).
 
+Approved in Phantom (27 November): a person approved one payment in the Phantom wallet (Testnet Mode). An attack on it was refused, `RecipientMismatch` ([0xaf103152…](https://testnet.bscscan.com/tx/0xaf103152c00674de1c39bd46bc3bd44d29182792b612d1e3e50231cab84a742f)), and the real invoice was paid under that approval ([0xdb589fcb…](https://testnet.bscscan.com/tx/0xdb589fcbd431ba9fbda016aef764788f4f455c9380be5c1dd23f818133b29397)). Phantom signs on BSC testnet only in Testnet Mode. Evidence: [`evidence/wp11-phantom-approval-testnet-2026-11-27.json`](evidence/wp11-phantom-approval-testnet-2026-11-27.json).
+
 ### Eight decisions, eight Seal records
 
 All eight vault decisions across our two demonstrated runs have Seal-signed records, independently verified against Aqta's published key. Reproduce every check with one command:
