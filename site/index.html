@@ -41,13 +41,22 @@ h1{font-size:44px;line-height:1.05;letter-spacing:-.03em;margin:44px 0 10px}h1 e
 .film{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000;margin-bottom:14px}.film video{display:block;width:100%;height:auto}
 h2.sec{font-size:15px;margin:6px 0 12px}
 @media(max-width:760px){.gal{grid-template-columns:1fr 1fr}}
+.built{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 28px}
+.built div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}.built b{display:block;font-size:14px}.built span{font-size:12.5px;color:var(--mut)}
+.built h3{grid-column:1/-1;margin:0 0 2px;font-size:13px;color:var(--mut);font-weight:600}
+@media(max-width:760px){.built{grid-template-columns:1fr 1fr}}
 </style></head><body>
 <header><div class="wrap"><div class="brand"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#0E7C45"/><path d="M10 21V8h5.2a4.3 4.3 0 0 1 0 8.6H10" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19.5" cy="20" r="2.1" fill="#8EE6B4"/></svg> Paybound</div><div class="live"><span class="dot"></span>Live from BNB Smart Chain testnet</div></div></header>
 <main class="wrap">
 <h1>An AI agent can be tricked.<br><em>This vault pays only what a person approved.</em></h1>
 <p class="sub">Every payment and refusal below is read live from the Paybound vault on BNB Smart Chain testnet. Open any transaction on BscScan, or check its Seal record yourself.</p>
 <div class="stats"><div class="stat"><b id="sPaid">–</b><span>paid, as approved</span></div><div class="stat"><b id="sRef">–</b><span>refused on chain</span></div><div class="stat"><b id="sWrong">–</b><span>paid outside a signed approval</span></div><div class="stat"><b>8 / 8</b><span>Seal records verified</span></div></div>
-<div class="how"><div><b>1 · A person approves</b><span>One payment, signed in their wallet (EIP-712): this recipient, up to this amount, this many times.</span></div><div><b>2 · The agent asks</b><span>An AI agent requests the payment after checking USDT on CoinMarketCap and the Atlas oracle.</span></div><div><b>3 · The vault decides</b><span>It pays only what matches. Anything else is refused, with the reason written on chain.</span></div><div><b>4 · Seal records it</b><span>Aqta's Seal signs a record of the decision that anyone can verify.</span></div></div>
+<div class="built"><h3>Built with</h3>
+<div><b>BNB Smart Chain</b><span>the vault contract and every refusal event</span></div>
+<div><b>CoinMarketCap API</b><span>live USDT price and local-currency amount before paying</span></div>
+<div><b>Atlas oracle</b><span>on-chain USDT/USD feed; the agent holds if off peg or stale</span></div>
+<div><b>Phantom</b><span>a person approved a payment in their wallet (testnet)</span></div>
+<div><b>Seal by Aqta</b><span>signed records of vault decisions, verifiable by anyone</span></div></div><div class="how"><div><b>1 · A person approves</b><span>One payment, signed in their wallet (EIP-712): this recipient, up to this amount, this many times.</span></div><div><b>2 · The agent asks</b><span>An AI agent requests the payment after checking USDT on CoinMarketCap and the Atlas oracle.</span></div><div><b>3 · The vault decides</b><span>It pays only what matches. Anything else is refused, with the reason written on chain.</span></div><div><b>4 · Seal records it</b><span>Aqta's Seal signs a record of the decision that anyone can verify.</span></div></div>
 <div class="layout"><div><div class="card"><h2>Vault decisions <small id="meta">reading the chain…</small></h2><div id="list"><div class="skel">Reading the vault from BNB Smart Chain testnet…</div></div></div></div><aside class="side"><h3>Start here</h3>
 <a class="k" href="#tx-0x12fe98c57fec81b356f3eabcbae99c3307935c3e77dbf93bde084765f19e41a2">Changed wallet <i class="bad">Refused</i></a>
 <a class="k" href="#tx-0x80e8d7613e0d37d3e62ed24f6e3a7ec7f39ce5c5b30f274210e9a0c072eed9d3">Raised amount <i class="bad">Refused</i></a>
