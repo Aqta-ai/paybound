@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paybound · live on BNB testnet</title><meta name="description" content="Every payment and refusal of the Paybound vault on BNB Smart Chain testnet, read live, with Seal records you can check.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2028%2028%22%20aria-hidden%3D%22true%22%3E%3Crect%20width%3D%2228%22%20height%3D%2228%22%20rx%3D%228%22%20fill%3D%22%230E7C45%22/%3E%3Cpath%20d%3D%22M10%2021V8h5.2a4.3%204.3%200%200%201%200%208.6H10%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3Ccircle%20cx%3D%2219.5%22%20cy%3D%2220%22%20r%3D%222.1%22%20fill%3D%22%238EE6B4%22/%3E%3C/svg%3E">
+<style>
+:root{--bg:#fafafa;--card:#fff;--ink:#0b1210;--mut:#5f6b66;--line:#e6e9e8;--g:#0E7C45;--gb:#e8f5ee;--r:#c2362b;--rb:#fdecea;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
+a{color:inherit}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:#fff}header .wrap{display:flex;align-items:center;gap:12px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}.live{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 0 4px #0e7c4522}
+h1{font-size:44px;line-height:1.05;letter-spacing:-.03em;margin:44px 0 10px}h1 em{font-style:normal;color:var(--g)}
+.sub{color:var(--mut);font-size:17px;max-width:680px;margin:0 0 28px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}.stat b{display:block;font-size:30px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.stat span{font-size:13px;color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:28px}
+.card h2{font-size:15px;margin:0;padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.card h2 small{font-weight:400;color:var(--mut);font-size:13px}
+.row{display:grid;grid-template-columns:110px 1fr 140px 150px 120px;gap:12px;align-items:center;padding:12px 18px;border-top:1px solid var(--line);font-size:14px}
+.row:first-of-type{border-top:0}.badge{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600}
+.paid{background:var(--gb);color:var(--g)}.refused{background:var(--rb);color:var(--r)}
+.m{font-family:var(--mono);font-size:13px;color:var(--mut)}.num{font-variant-numeric:tabular-nums;text-align:right}
+.btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;font-size:12.5px;cursor:pointer}.btn:hover{border-color:#cfd5d3}
+.btn.seal{border-color:#bfe3d0;color:var(--g)}.muted{color:var(--mut)}
+.check{grid-column:1/-1;background:#f6faf8;border:1px solid #d9ece2;border-radius:10px;padding:12px 14px;font-size:13.5px}
+.check li{list-style:none;margin:3px 0}.ok{color:var(--g);font-weight:700}.bad{color:var(--r);font-weight:700}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}.how div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}.how b{display:block;margin-bottom:4px}
+.how span{font-size:13.5px;color:var(--mut)}footer{color:var(--mut);font-size:13px;padding:10px 0 40px}footer a{color:var(--ink)}
+.skel{padding:22px 18px;color:var(--mut)}
+@media(max-width:760px){h1{font-size:32px}.stats,.how{grid-template-columns:1fr 1fr}.row{grid-template-columns:90px 1fr 100px}.row .hide{display:none}}
+</style></head><body>
+<header><div class="wrap"><div class="brand"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#0E7C45"/><path d="M10 21V8h5.2a4.3 4.3 0 0 1 0 8.6H10" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19.5" cy="20" r="2.1" fill="#8EE6B4"/></svg> Paybound</div><div class="live"><span class="dot"></span>Live from BNB Smart Chain testnet</div></div></header>
+<main class="wrap">
+<h1>An AI agent can be tricked.<br><em>This vault pays only what a person approved.</em></h1>
+<p class="sub">Every payment and refusal below is read live from the Paybound vault on BNB Smart Chain testnet. Open any transaction on BscScan, or check its Seal record yourself.</p>
+<div class="stats"><div class="stat"><b id="sPaid">–</b><span>paid, as approved</span></div><div class="stat"><b id="sRef">–</b><span>refused on chain</span></div><div class="stat"><b id="sWrong">–</b><span>paid outside a signed approval</span></div><div class="stat"><b>8 / 8</b><span>Seal records verified</span></div></div>
+<div class="how"><div><b>1 · A person approves</b><span>One payment, signed in their wallet (EIP-712): this recipient, up to this amount, this many times.</span></div><div><b>2 · The agent asks</b><span>An AI agent requests the payment after checking USDT on CoinMarketCap and the Atlas oracle.</span></div><div><b>3 · The vault decides</b><span>It pays only what matches. Anything else is refused, with the reason written on chain.</span></div><div><b>4 · Seal records it</b><span>Aqta's Seal signs a record of the decision that anyone can verify.</span></div></div>
+<div class="card"><h2>Vault decisions <small id="meta">reading the chain…</small></h2><div id="list"><div class="skel">Reading the vault from BNB Smart Chain testnet…</div></div></div>
+<footer>Testnet only, test funds, not audited. Vault <a href="https://testnet.bscscan.com/address/0x190d9e1a4d9193371aa7b884db61bd93e71ae146" target="_blank" rel="noopener">0x190d…e146</a> · <a href="https://github.com/Aqta-ai/paybound" target="_blank" rel="noopener">Code</a> · <a href="https://github.com/Aqta-ai/paybound/blob/main/PROOF.md" target="_blank" rel="noopener">Proof</a> · Built with Seal by Aqta.</footer>
+</main><script src="app.js" type="module"></script></body></html>

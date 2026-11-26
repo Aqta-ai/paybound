@@ -2,6 +2,9 @@
 
 <p align="center"><img src="docs/media/paybound-cover.png" width="760" alt="Paybound: four attacks on BNB Chain testnet, zero sent to attackers"></p>
 
+**Live:** [paybound-eight.vercel.app](https://paybound-eight.vercel.app): every payment and refusal read live from BNB testnet, with Seal records you can check in the browser. Source in [`site/`](site/). Every claim with a link: [PROOF.md](PROOF.md).
+
+
 By Aqta, the team behind Seal: security for AI agents that act. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The code and packages still use the working name Spend Guard (`SpendGuardVault`, `@aqta/spend-guard`).
 It runs on BNB Smart Chain testnet. It deploys only an open-mint test token (Test USD) for testnet. There is no project token.
 
