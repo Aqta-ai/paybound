@@ -1,0 +1,11 @@
+{
+  "name": "paybound-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Paybound: let any MCP agent check a payment against a person's approval on BNB Smart Chain testnet, list vault decisions and verify Seal records. Read-only: no keys, no transactions. Testnet only, not audited.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": { "paybound-mcp": "./server.mjs" },
+  "files": ["server.mjs", "records.json", "try-approval.json", "README.md"],
+  "dependencies": { "@modelcontextprotocol/sdk": "1.12.1", "viem": "2.21.55", "zod": "3.24.1" },
+  "engines": { "node": ">=18" }
+}

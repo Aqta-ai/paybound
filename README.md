@@ -10,6 +10,7 @@
 
 - **In your browser, 10 seconds:** open [paybound-eight.vercel.app](https://paybound-eight.vercel.app), press *Change the wallet* under "Try to break it". The real vault on BNB testnet answers `RecipientMismatch`. Read-only: nothing moves.
 - **On your machine, about a minute:** `git clone https://github.com/Aqta-ai/paybound && cd paybound && npm ci && npm run build && npm test && npm run demo`. The demo prints each attack and the vault's refusal; the attacker receives 0.
+- **From your AI agent (MCP):** [`packages/paybound-mcp`](packages/paybound-mcp) gives Claude, Cursor or any MCP client three read-only tools: check a payment against the vault, list its decisions, verify a Seal record.
 - **Check the evidence:** `npm run verify:seal` verifies all ten Seal records against Aqta's published key. Every transaction is in [PROOF.md](PROOF.md).
 
 
