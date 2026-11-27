@@ -50,7 +50,11 @@ async function ask(){tv.className="verdict";tv.innerHTML='<div class="big">Askin
  try{const r=await fetch(`/api/check?recipient=${encodeURIComponent(tw.value.trim())}&amount=${encodeURIComponent(ta.value.trim())}&forge=${tf.checked?1:0}`).then(x=>x.json());
   if(r.error){tv.innerHTML=`<div class="big">Check the input</div><div class="ex">${r.error}</div>`;return}
   tv.className="verdict "+(r.wouldPay?"yes":"no");
-  tv.innerHTML=`<div class="big">${r.wouldPay?"Would pay":"Refused"}</div><div class="why">${r.reason}</div><div class="ex">${EXPLAIN[r.reason]||"The vault refused this request."}</div><div class="ex">Answered by the vault contract's own check on BNB Smart Chain testnet.</div>`;
+  const w=tw.value.trim(),a=ta.value.trim(),wBad=w.toLowerCase()!==SUP.toLowerCase(),aBad=Number(a)>3400,sBad=tf.checked;
+  tv.innerHTML=`<div class="big">${r.wouldPay?"Would pay":"Refused"}</div><div class="why">${r.reason}</div><div class="ex">${EXPLAIN[r.reason]||"The vault refused this request."}</div>
+  <div class="cmp"><div><b>The AI asked</b><span class="m ${wBad?"bad":""}">${w.slice(0,8)}…${w.slice(-4)}</span><br><span class="m ${aBad?"bad":""}">${Number(a).toLocaleString("en-GB")} test USD</span><br><span class="m ${sBad?"bad":""}">${sBad?"forged signature":"approver's signature"}</span></div>
+  <div><b>The person approved</b><span class="m">Kowloon Ceramics 0xc217…6cc6</span><br><span class="m">up to 3,400 test USD, once</span><br><span class="m">signed by the approver</span></div></div>
+  <div class="ex">Answered by the vault contract's own check on BNB Smart Chain testnet.</div>`;
  }catch{tv.innerHTML='<div class="big">Try again</div><div class="ex">The vault could not be reached.</div>'}}
 document.getElementById("tgo").addEventListener("click",ask);
 document.querySelector(".presets").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const p=b.dataset.p;
@@ -59,3 +63,5 @@ document.querySelector(".presets").addEventListener("click",e=>{const b=e.target
  if(p==="forge"){tw.value=SUP;ta.value="3400";tf.checked=true}
  if(p==="real"){tw.value=SUP;ta.value="3400";tf.checked=false}
  ask();});
+
+document.getElementById("vbtn").addEventListener("click",()=>{const row=document.getElementById("tx-0xc7aca06e38fa998ef560676453cb1d37531135ff0b72a93c71fdd6c33e79dd7e")||document.querySelector(".btn.seal")?.closest(".row");if(!row)return;row.scrollIntoView({behavior:"smooth",block:"center"});row.classList.add("hl");setTimeout(()=>row.classList.remove("hl"),1600);const s=row.querySelector(".btn.seal");if(s&&!row.querySelector(".check"))s.click();});

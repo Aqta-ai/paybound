@@ -57,7 +57,7 @@ Every live CoinMarketCap call is logged in [`evidence/cmc-calls.jsonl`](evidence
 ## Tests
 
 ```sh
-npm ci && npm run build && npm test   # 114 passing: 64 Solidity, 50 Node.js (about a minute)
+npm ci && npm run build && npm test   # 119 passing: 64 Solidity, 55 Node.js (about a minute)
 ```
 
 ## Limits

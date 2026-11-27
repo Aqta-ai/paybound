@@ -156,7 +156,7 @@ Node.js 22 or later. About one minute from clone to the attack table:
 npm ci && npm run build && npm test && npm run demo
 ```
 
-Expect 114 passing (64 Solidity, 50 Node.js), then the table below.
+Expect 119 passing (64 Solidity, 55 Node.js), then the table below.
 
 For the browser demo, run `docker compose up --build --wait` from the repository
 root. The first build needs internet access. Then run `docker compose logs demo | grep "keep private"`
