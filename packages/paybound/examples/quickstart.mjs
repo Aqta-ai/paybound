@@ -3,14 +3,14 @@
 // attempts to stretch that approval are refused on chain.
 //
 //   npx hardhat node                      (or anvil; any local chain on :8545)
-//   npm install @aqta/spend-guard viem
+//   npm install paybound viem
 //   node quickstart.mjs
 //
 // For BSC testnet: set RPC_URL to a testnet RPC and the four *_KEY variables
 // to funded testnet keys. Mainnet is refused by the library.
 import { createPublicClient, createWalletClient, http, parseUnits, defineChain } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { deployVault, newApproval, signApproval, submit, requestFor, printResult, testTokenAbi, testTokenBytecode } from "@aqta/spend-guard";
+import { deployVault, newApproval, signApproval, submit, requestFor, printResult, testTokenAbi, testTokenBytecode } from "paybound";
 
 const rpc = process.env.RPC_URL ?? "http://127.0.0.1:8545";
 // Well-known local development keys (Hardhat/Anvil accounts 0-3). Never use them on a public network.

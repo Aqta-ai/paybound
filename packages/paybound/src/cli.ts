@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 // guard: command-line front end to the SDK.
 //
-//   spend-guard approve --vault 0x.. --agent 0x.. --token 0x.. --recipient 0x.. --amount 4800 [--uses 1] [--cap 4800] [--hours 24] [--decimals 18]
-//   spend-guard cosign <approval.json>
-//   spend-guard check <approval.json> [--amount 4800] [--recipient 0x..]
-//   spend-guard submit <approval.json> [--amount 4800] [--recipient 0x..]
-//   spend-guard log --vault 0x.. [--from-block N]
+//   paybound approve --vault 0x.. --agent 0x.. --token 0x.. --recipient 0x.. --amount 4800 [--uses 1] [--cap 4800] [--hours 24] [--decimals 18]
+//   paybound cosign <approval.json>
+//   paybound check <approval.json> [--amount 4800] [--recipient 0x..]
+//   paybound submit <approval.json> [--amount 4800] [--recipient 0x..]
+//   paybound log --vault 0x.. [--from-block N]
 //
 // Environment (never commit these): RPC_URL (default http://127.0.0.1:8545),
 // APPROVER_PRIVATE_KEY for approve/cosign, AGENT_PRIVATE_KEY for check/submit.

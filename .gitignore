@@ -12,8 +12,8 @@ approvals/*.json
 coverage/
 out/
 
-packages/spend-guard/dist/
-packages/spend-guard/*.tgz
-packages/spend-guard-py/build/
-packages/spend-guard-py/**/*.egg-info/
+packages/paybound/dist/
+packages/paybound/*.tgz
+packages/paybound-py/build/
+packages/paybound-py/**/*.egg-info/
 __pycache__/

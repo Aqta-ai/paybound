@@ -5,7 +5,7 @@
 **Live:** [paybound-eight.vercel.app](https://paybound-eight.vercel.app): every payment and refusal read live from BNB testnet, with Seal records you can check in the browser. Source in [`site/`](site/). Every claim with a link: [PROOF.md](PROOF.md).
 
 
-By Aqta, the team behind Seal: security for AI agents that act. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The code and packages still use the working name Spend Guard (`SpendGuardVault`, `@aqta/spend-guard`).
+By Aqta, the team behind Seal: security for AI agents that act. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The code and packages still use the working name Spend Guard (`SpendGuardVault`, `paybound`).
 It runs on BNB Smart Chain testnet. It deploys only an open-mint test token (Test USD) for testnet. There is no project token.
 
 An AI agent that pays invoices can be tricked. A message says "the supplier's wallet changed,
@@ -91,7 +91,7 @@ These controls work together. Paybound sits alongside them and does not replace 
 `pay_invoice` is a ready-made tool for any function-calling agent (OpenAI-compatible APIs, local models via Ollama, most agent frameworks). The model fills in recipient and amount; the vault decides.
 
 ```js
-import { paymentTool } from "@aqta/spend-guard";
+import { paymentTool } from "paybound";
 const pay = paymentTool({ wallet: agentWallet, client, approvals: [signedApproval], explorerTx: "https://testnet.bscscan.com/tx/" });
 
 const reply = await openai.chat.completions.create({ model, messages, tools: [pay.definition] });
@@ -106,15 +106,15 @@ Tested against a local chain in `test/ts/agent-tool.test.ts`: an unapproved reci
 ## Use it in your own agent: npm or Python
 
 Two client libraries for the same vault contract. Approvals signed in one verify in the other (identical EIP-712 digests).
-Both install from this repository; they are not on the npm or PyPI registries.
+Python: `pip install paybound` (on PyPI). TypeScript: install from this repository until the npm release lands.
 
 ```sh
-npm install ./packages/spend-guard viem      # TypeScript / JavaScript (viem)
-pip install ./packages/spend-guard-py        # Python (web3.py)
+npm install ./packages/paybound viem      # TypeScript / JavaScript (viem)
+pip install paybound                       # Python (web3.py), from PyPI
 ```
 
 ```js
-import { deployVault, newApproval, signApproval, submit, requestFor } from "@aqta/spend-guard";
+import { deployVault, newApproval, signApproval, submit, requestFor } from "paybound";
 const vault = await deployVault(owner, client, { guardian, approvers: [approverAddr], agents: [agentAddr] });
 const approval = newApproval({ agent: agentAddr, token, recipient: supplier, amount: parseUnits("3400", 18) });
 const signed = { approval, signatures: [await signApproval(approver, vault, 97, approval)] };
@@ -122,7 +122,7 @@ await submit(agent, client, vault, signed, { ...requestFor(approval), recipient:
 await submit(agent, client, vault, signed, requestFor(approval));                            // Executed
 ```
 
-Full API and a command-line tool (`npx spend-guard approve | check | submit | log`): [packages/spend-guard](packages/spend-guard/README.md). Python: [packages/spend-guard-py](packages/spend-guard-py/README.md). Both were tested end to end against a fresh chain: changed recipient refused, raised amount refused, real invoice paid once, replay refused, scammer balance zero.
+Full API and a command-line tool (`npx paybound approve | check | submit | log`): [packages/paybound](packages/paybound/README.md). Python: [packages/paybound-py](packages/paybound-py/README.md). Both were tested end to end against a fresh chain: changed recipient refused, raised amount refused, real invoice paid once, replay refused, scammer balance zero.
 
 ## What the stage demo does (BSC testnet mode)
 

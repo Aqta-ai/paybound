@@ -1,7 +1,7 @@
 {
-  "name": "@aqta/spend-guard",
+  "name": "paybound",
   "version": "0.1.0",
-  "description": "Let AI agents pay on BNB Smart Chain without giving them unlimited authority. A person approves one exact payment; the vault pays only that, and records every refusal on chain.",
+  "description": "Paybound: let AI agents pay on BNB Smart Chain only what a person approved. A signed approval (recipient, ceiling, uses, expiry) is enforced by a vault; every refusal is recorded on chain. Testnet only, not audited.",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -13,7 +13,7 @@
     }
   },
   "bin": {
-    "spend-guard": "./dist/cli.js"
+    "paybound": "./dist/cli.js"
   },
   "files": [
     "dist",
@@ -37,21 +37,25 @@
     "prepare": "npm run build"
   },
   "keywords": [
-    "bnb",
-    "bsc",
-    "bnb-chain",
-    "ai-agent",
     "agent-payments",
-    "spending-limits",
-    "smart-contract",
-    "viem",
+    "ai-agent",
+    "ai-agents",
+    "aqta",
+    "bnb",
+    "bnb-chain",
+    "bsc",
+    "eip-712",
+    "paybound",
+    "payments",
     "seal",
-    "aqta"
+    "smart-contract",
+    "spending-limits",
+    "viem"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Aqta-ai/seal-spend-guard.git",
-    "directory": "packages/spend-guard"
+    "url": "git+https://github.com/Aqta-ai/paybound.git",
+    "directory": "packages/paybound"
   },
-  "homepage": "https://aqta.ai/seal"
+  "homepage": "https://paybound-eight.vercel.app"
 }

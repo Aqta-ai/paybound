@@ -1,5 +1,5 @@
 {
-  "name": "agent-spend-guard",
+  "name": "paybound-monorepo",
   "version": "0.1.0",
   "description": "A BNB Chain vault that lets an AI agent spend only what a person approved, for the exact payment request.",
   "license": "Apache-2.0",

@@ -2,7 +2,7 @@
   <img src="https://aqta.ai/brand/seal-mark-512.png" alt="Seal" width="88" height="88" />
 </p>
 
-# @aqta/spend-guard
+# paybound
 
 **Let AI agents pay on BNB Smart Chain without giving them unlimited authority.**
 
@@ -15,7 +15,7 @@ A person approves one exact payment: this recipient, this amount, this many uses
 Works on BSC testnet (chain 97) and local chains. Mainnet is refused on purpose until audited.
 
 ```sh
-npm install @aqta/spend-guard viem
+npm install paybound viem
 ```
 
 
@@ -57,7 +57,7 @@ The real invoice
 import { createPublicClient, createWalletClient, http, parseUnits } from "viem";
 import { bscTestnet } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
-import { deployVault, newApproval, signApproval, submit, requestFor } from "@aqta/spend-guard";
+import { deployVault, newApproval, signApproval, submit, requestFor } from "paybound";
 
 const client = createPublicClient({ chain: bscTestnet, transport: http() });
 const owner = createWalletClient({ account: privateKeyToAccount(process.env.OWNER_KEY), chain: bscTestnet, transport: http() });
@@ -111,10 +111,10 @@ Callers that are not registered agents are rejected outright (the transaction re
 ## Command line
 
 ```sh
-npx spend-guard approve --vault 0x.. --agent 0x.. --token 0x.. --recipient 0x.. --amount 3400
-npx spend-guard check approval.json --recipient 0x..
-npx spend-guard submit approval.json
-npx spend-guard log --vault 0x..
+npx paybound approve --vault 0x.. --agent 0x.. --token 0x.. --recipient 0x.. --amount 3400
+npx paybound check approval.json --recipient 0x..
+npx paybound submit approval.json
+npx paybound log --vault 0x..
 ```
 
 Environment: `RPC_URL`, `APPROVER_PRIVATE_KEY` (approve), `AGENT_PRIVATE_KEY` (check, submit). Never commit keys.

@@ -2,7 +2,7 @@
   <img src="https://aqta.ai/brand/seal-mark-512.png" alt="Seal" width="88" height="88" />
 </p>
 
-# aqta-spend-guard (Python)
+# paybound (Python)
 
 **Let AI agents pay on BNB Smart Chain without giving them unlimited authority.**
 
@@ -10,15 +10,15 @@
 
 [![License Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE) ![BNB Smart Chain testnet](https://img.shields.io/badge/BNB%20Smart%20Chain-testnet-F0B90B.svg) ![web3.py](https://img.shields.io/badge/built%20on-web3.py-3776AB.svg) ![npm twin](https://img.shields.io/badge/also%20on-npm-CB3837.svg)
 
-A person approves one exact payment; the vault pays only that and records every refusal on chain. Python client for the same `SpendGuardVault` contract as the npm package `@aqta/spend-guard`; approval digests are identical across both.
+A person approves one exact payment; the vault pays only that and records every refusal on chain. Python client for the same `SpendGuardVault` contract as the npm package `paybound`; approval digests are identical across both.
 
 ```sh
-pip install aqta-spend-guard
+pip install paybound
 ```
 
 ```python
 from web3 import Web3
-from aqta_spend_guard import deploy_vault, new_approval, sign_approval, submit, request_for
+from paybound import deploy_vault, new_approval, sign_approval, submit, request_for
 
 w3 = Web3(Web3.HTTPProvider("https://data-seed-prebsc-1-s1.bnbchain.org:8545"))  # BSC testnet
 vault = deploy_vault(w3, OWNER_KEY, guardian=GUARDIAN, approvers=[APPROVER], agents=[AGENT])

@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "aqta-spend-guard"
+name = "paybound"
 version = "0.1.0"
-description = "Let AI agents pay on BNB Smart Chain without giving them unlimited authority."
+description = "Paybound: let AI agents pay on BNB Smart Chain only what a person approved. Testnet only, not audited."
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.9"
@@ -14,8 +14,8 @@ keywords = ["bnb", "bsc", "ai-agent", "agent-payments", "web3", "smart-contract"
 classifiers = ["License :: OSI Approved :: Apache Software License", "Programming Language :: Python :: 3"]
 
 [project.urls]
-Homepage = "https://aqta.ai/seal"
-Source = "https://github.com/Aqta-ai/seal-spend-guard"
+Homepage = "https://paybound-eight.vercel.app"
+Source = "https://github.com/Aqta-ai/paybound"
 
 [tool.setuptools.package-data]
-aqta_spend_guard = ["contracts.json"]
+paybound = ["contracts.json"]

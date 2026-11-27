@@ -3,13 +3,13 @@
 three attempts to stretch that approval are refused on chain.
 
     npx hardhat node            # or anvil; any local chain on :8545
-    pip install aqta-spend-guard
+    pip install paybound
     python quickstart.py
 """
 import os
 from web3 import Web3
 from eth_account import Account
-from aqta_spend_guard import deploy_vault, new_approval, sign_approval, submit, request_for, print_result, token_abi, token_bytecode, _send
+from paybound import deploy_vault, new_approval, sign_approval, submit, request_for, print_result, token_abi, token_bytecode, _send
 
 # Well-known local development keys (Hardhat/Anvil accounts 0-3). Never use them on a public network.
 DEV = ["0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80", "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d",
