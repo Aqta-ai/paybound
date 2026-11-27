@@ -14,7 +14,7 @@
 
 
 
-By Aqta, the team behind Seal: security for AI agents that act. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The code and packages still use the working name Spend Guard (`SpendGuardVault`, `paybound`).
+By Aqta, the team behind Seal: security for AI agents that act. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The vault contract is `SpendGuardVault`; the client packages are `paybound` (`pip install paybound`).
 It runs on BNB Smart Chain testnet. It deploys only an open-mint test token (Test USD) for testnet. There is no project token.
 
 An AI agent that pays invoices can be tricked. A message says "the supplier's wallet changed,
@@ -32,7 +32,7 @@ Four attacks. Zero sent. Run on 27 November 2026; the full run is in [`evidence/
 |---|---|
 | Changed recipient: the agent asked to pay an attacker wallet. Refused: `RecipientMismatch`, nothing moved | [0x12fe98c5…](https://testnet.bscscan.com/tx/0x12fe98c57fec81b356f3eabcbae99c3307935c3e77dbf93bde084765f19e41a2) |
 | 3,900 asked for against an approval of up to 3,400. Refused: `AmountAboveApproval` | [0x80e8d761…](https://testnet.bscscan.com/tx/0x80e8d7613e0d37d3e62ed24f6e3a7ec7f39ce5c5b30f274210e9a0c072eed9d3) |
-| An approval forged with the agent's stolen key. Refused: `BadSignature` | [0xf4388989…](https://testnet.bscscan.com/tx/0xf4388989cb388e9f3e5d1ff7dc71cfd7fd76d23a1b59a2c786e101d30692260f) |
+| An approval forged with the agent's key (simulated theft). Refused: `BadSignature` | [0xf4388989…](https://testnet.bscscan.com/tx/0xf4388989cb388e9f3e5d1ff7dc71cfd7fd76d23a1b59a2c786e101d30692260f) |
 | The real invoice: the approved supplier was paid 3,400 test dollars, once | [0xa24e2be0…](https://testnet.bscscan.com/tx/0xa24e2be0859a465e1b943af9527ce166c1296a67ba2d48a9c2f685a4d6d42794) |
 | The same invoice asked for again. Refused: `UsesExhausted` | [0xf0d84267…](https://testnet.bscscan.com/tx/0xf0d8426719cabe99e0d19cdaaa196355f9d3873a226fb528012c187bec5ba584) |
 
