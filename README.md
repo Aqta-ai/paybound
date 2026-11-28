@@ -15,7 +15,7 @@
 
 
 
-By Aqta, the team behind Seal: security for AI agents that act. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The vault contract is `SpendGuardVault`; the client packages are `paybound` (`pip install paybound`).
+By [Aqta](https://aqta.ai/seal), the team behind Seal: security for AI agents that act. Seal by Aqta took 2nd place in the Startup Track at BNB Chain Demo Night Bangkok 2026. Paybound is a working developer reference implementation for AI payment agents with human-approved spending on BNB Chain: testnet only, not audited, not a production payment product. The vault contract is `SpendGuardVault`; the client packages are `paybound` (`pip install paybound`).
 It runs on BNB Smart Chain testnet. It deploys only an open-mint test token (Test USD) for testnet. There is no project token.
 
 An AI agent that pays invoices can be tricked. A message says "the supplier's wallet changed,
