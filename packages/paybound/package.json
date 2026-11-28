@@ -1,6 +1,6 @@
 {
   "name": "paybound",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Paybound: let AI agents pay on BNB Smart Chain only what a person approved. A signed approval (recipient, ceiling, uses, expiry) is enforced by a vault; every refusal is recorded on chain. Testnet only, not audited.",
   "license": "Apache-2.0",
   "type": "module",
@@ -13,7 +13,7 @@
     }
   },
   "bin": {
-    "paybound": "./dist/cli.js"
+    "paybound": "dist/cli.js"
   },
   "files": [
     "dist",

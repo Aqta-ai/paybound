@@ -38,6 +38,21 @@ for (let i = 0; i < rest.length; i++) {
   else positional.push(rest[i]);
 }
 
+const COMMANDS = ["approve", "cosign", "check", "submit", "log"];
+if (!cmd || !COMMANDS.includes(cmd)) {
+  console.log(
+    [
+      "paybound: AI agents pay only what a person approved (BNB Smart Chain testnet, not audited)",
+      "",
+      "usage: paybound <command> [--flag value]",
+      "commands: " + COMMANDS.join(", "),
+      "set RPC_URL to a BNB testnet RPC (chain 97) or a local chain; see the README",
+      "https://github.com/Aqta-ai/paybound",
+    ].join("\n"),
+  );
+  process.exit(cmd && !["help", "--help", "-h"].includes(cmd) ? 1 : 0);
+}
+
 const rpc = process.env.RPC_URL ?? "http://127.0.0.1:8545";
 const probe = createPublicClient({ transport: http(rpc) });
 const chainId = await probe.getChainId();
