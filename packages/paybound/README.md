@@ -121,4 +121,4 @@ Environment: `RPC_URL`, `APPROVER_PRIVATE_KEY` (approve), `AGENT_PRIVATE_KEY` (c
 
 ## Status
 
-Testnet software, not audited. Covered by the repository's contract and TypeScript tests and a simulated 1,000-agent attack run (11,100 attacks, nothing received by attackers, local chain). Source: github.com/Aqta-ai/seal-spend-guard. Built by Aqta (aqta.ai/seal). Apache-2.0.
+Testnet software, not audited. Covered by the repository's contract and TypeScript tests and a simulated 1,000-agent attack run (11,100 attacks, nothing received by attackers, local chain). Source: github.com/Aqta-ai/paybound. Built by Aqta (aqta.ai/seal). Apache-2.0.

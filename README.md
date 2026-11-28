@@ -2,7 +2,7 @@
 
 <p align="center"><img src="docs/media/paybound-cover.png" width="760" alt="Paybound: four attacks on BNB Chain testnet, zero sent to attackers"></p>
 
-**Live:** [paybound-eight.vercel.app](https://paybound-eight.vercel.app): every payment and refusal read live from BNB testnet, with Seal records you can check in the browser. Source in [`site/`](site/). Every claim with a link: [PROOF.md](PROOF.md).
+**Live:** [paybound-eight.vercel.app](https://paybound-eight.vercel.app): every payment and refusal of the vault on BNB testnet, indexed from the chain with new events read live, each row linked to BscScan, and Seal records for the showcase decisions. Source in [`site/`](site/). Every claim with a link: [PROOF.md](PROOF.md).
 
 ## Try Paybound
 
@@ -48,19 +48,19 @@ Approved in Phantom (27 November): a person approved one payment in the Phantom 
 ### Ten decisions, ten Seal records
 
 
-All ten vault decisions across our three demonstrated runs (four attacks, the real AI, the Phantom approval) have Seal-signed records, independently verified against Aqta's published key. Reproduce every check with one command:
+All ten vault decisions across our three demonstrated runs (four attacks, the real AI, the Phantom approval) have Seal-signed records, verified with the open aqta-verify-receipt against Aqta's published key (reproduce with `npm run verify:seal`). Reproduce every check with one command:
 
 ```sh
 npm run verify:seal   # recomputes each args hash, verifies each signature, confirms each log leaf
 ```
 
-For every vault decision above, the five 27 November transactions and the three of the 26 November real-AI run, `scripts/seal-record-vault-decisions.ts` reads the vault's own event from the chain receipt and Aqta's Seal service signs a record of it (ACTION-v1, Ed25519). The record binds the chain id, vault, transaction hash, block, log index, event topics and data, and the vault's outcome and reason, as the SHA-256 of their canonical JSON. The records are in [`evidence/wp10-seal-records-testnet-2026-11-27.json`](evidence/wp10-seal-records-testnet-2026-11-27.json) and [`evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json`](evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json), and sit in Seal's public transparency log (leaves 5718 to 5721, 5728 to 5731, 5738 and 5739). Some public RPCs prune older receipts; the official `https://data-seed-prebsc-1-s1.bnbchain.org:8545` returns them.
+For every vault decision above, the five 27 November transactions, the three of the 26 November real-AI run and the two of the Phantom approval, `scripts/seal-record-vault-decisions.ts` reads the vault's own event from the chain receipt and Aqta's Seal service signs a record of it (ACTION-v1, Ed25519). The record binds the chain id, vault, transaction hash, block, log index, event topics and data, and the vault's outcome and reason, as the SHA-256 of their canonical JSON. The records are in [`evidence/wp10-seal-records-testnet-2026-11-27.json`](evidence/wp10-seal-records-testnet-2026-11-27.json), [`evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json`](evidence/wp10b-seal-records-real-ai-testnet-2026-11-26.json) and [`evidence/wp10c-seal-records-phantom-testnet-2026-11-27.json`](evidence/wp10c-seal-records-phantom-testnet-2026-11-27.json), and sit in Seal's public transparency log (leaves 5718 to 5721, 5728 to 5731, 5738 and 5739). Some public RPCs prune older receipts; the official `https://data-seed-prebsc-1-s1.bnbchain.org:8545` returns them.
 
 ```sh
 npx aqta-verify-receipt record.json --profile action-1 --key 9Y3Eiq6V8QjRDUM5nPqSwKIOPQaoEU4SbagfYFdvWa4
 ```
 
-Check the key yourself at `https://api.aqta.ai/v1/attestation/public-key` and the log at `https://api.aqta.ai/v1/public/transparency/proof/<action_id>`. Seal's `outcome` reads `ALLOWED`: Seal accepted the record. The vault's verdict is inside the signed arguments.
+Check the key yourself at `https://api.aqta.ai/v1/attestation/public-key` and the log at `https://api.aqta.ai/v1/public/transparency/proof/<action_id>`. Seal signed a record of the vault's decision after it landed on chain. `outcome: ALLOWED` means Seal accepted the record; the vault's verdict (Paid, signed as `Executed`, or `Refused`, with its reason) is inside the signed arguments, as `vault_outcome` and `vault_reason`.
 
 Vault [`0x190d9e1a…e146`](https://testnet.bscscan.com/address/0x190d9e1a4d9193371aa7b884db61bd93e71ae146) ·
 test token [`0x3b6875da…7595`](https://testnet.bscscan.com/address/0x3b6875dac9c9a42958f63cd541f8f410fb777595) · chain 97.
@@ -116,10 +116,10 @@ Tested against a local chain in `test/ts/agent-tool.test.ts`: an unapproved reci
 ## Use it in your own agent: npm or Python
 
 Two client libraries for the same vault contract. Approvals signed in one verify in the other (identical EIP-712 digests).
-Python: `pip install paybound` (on PyPI). TypeScript: install from this repository until the npm release lands.
+Python: `pip install paybound` (on PyPI). TypeScript: `npm install paybound viem` (on npm).
 
 ```sh
-npm install ./packages/paybound viem      # TypeScript / JavaScript (viem)
+npm install paybound viem                 # TypeScript / JavaScript (viem), from npm
 pip install paybound                       # Python (web3.py), from PyPI
 ```
 
@@ -426,11 +426,11 @@ docs/                              diagrams and the CoinMarketCap and Atlas writ
 
 ## What next
 
-- Done: Seal-signed records for every vault decision so far, checkable offline with the open
+- Done: Seal-signed records for the ten showcase vault decisions, checkable offline with the open
   verifier `aqta-verify-receipt` (see "Ten decisions, ten Seal records" above).
 - One approval across payment rails: the same rule for euro bank transfers (already shown in Seal)
   and BNB Chain.
-- `paybound` on npm, alongside the Python package.
+- Done: `paybound` on npm (`npm install paybound viem`), alongside the Python package.
 - An external audit before any mainnet use. Until then: testnet only.
 
 ## History
