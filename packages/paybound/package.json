@@ -50,12 +50,18 @@
     "seal",
     "smart-contract",
     "spending-limits",
-    "viem"
+    "viem",
+    "ai-security",
+    "web3"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Aqta-ai/paybound.git",
     "directory": "packages/paybound"
   },
-  "homepage": "https://paybound-eight.vercel.app"
+  "homepage": "https://paybound-eight.vercel.app",
+  "bugs": {
+    "url": "https://github.com/Aqta-ai/paybound/issues"
+  },
+  "author": "Aqta Technologies Limited (https://aqta.ai)"
 }
