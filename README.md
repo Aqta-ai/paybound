@@ -426,10 +426,11 @@ docs/                              diagrams and the CoinMarketCap and Atlas writ
 
 ## What next
 
-- Seal's signed records for each vault decision, checkable offline with the open verifier
-  `aqta-verify-receipt`. Not built yet: today the record of a refusal is the vault's on-chain event.
+- Done: Seal-signed records for every vault decision so far, checkable offline with the open
+  verifier `aqta-verify-receipt` (see "Ten decisions, ten Seal records" above).
 - One approval across payment rails: the same rule for euro bank transfers (already shown in Seal)
   and BNB Chain.
+- `paybound` on npm, alongside the Python package.
 - An external audit before any mainnet use. Until then: testnet only.
 
 ## History
